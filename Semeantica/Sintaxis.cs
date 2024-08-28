@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Sintaxis_1
+namespace Semantica
 {
     public class Sintaxis : Lexico
     {
@@ -26,7 +26,7 @@ namespace Sintaxis_1
                 throw new Error("Sintaxis: se espera un "+espera,log);
             }
         }
-        public void match(Token.Tipos espera)
+        public void match(Tipos espera)
         {
             if (getClasificacion() == espera)
             {

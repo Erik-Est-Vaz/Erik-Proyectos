@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Sintaxis_1
+namespace Semantica
 {
     public class Token
     {
@@ -11,7 +11,7 @@ namespace Sintaxis_1
         {
             Identificador, Numero, FinSentencia, OpTermino, OpFactor,
             OpLogico, OpRelacional, OpTernario, Asignacion, IncTermino,
-            IncFactor, Cadena, Inicio, Fin, Caracter, Moneda, TipoDato, Ciclo, 
+            IncFactor, Cadena, Inicio, Fin, Caracter, TipoDato, Ciclo, 
             Condicion
         };
         private string contenido;
