@@ -14,17 +14,18 @@ using System.Threading.Tasks;
     3. Cambiar los constructoores de la clase lexico usando parametros por default
 
 */
-namespace semantica
+namespace Semantica
 {
     public class Lenguaje : Sintaxis
     {
+        List<Variable> listaVariables;
         public Lenguaje()
         {
-
+            listaVariables=new List<Variable>();
         }
         public Lenguaje(String nombre) : base(nombre)
         {
-
+            listaVariables=new List<Variable>();
         }
         //Programa  -> Librerias? Variables? Main
         public void Programa()
@@ -34,6 +35,7 @@ namespace semantica
                 Librerias();
             }
             Main();
+            imprimeVariables();
         }
         //Librerias -> using ListaLibrerias; Librerias?
         private void Librerias()
@@ -57,25 +59,40 @@ namespace semantica
             }
         }
         //Variables -> tipo_dato Lista_identificadores; Variables?
+        Variable.TipoDato getTipo(string TipoDato)
+        {
+            Variable.TipoDato tipo = Variable.TipoDato.Char;
+            switch (TipoDato)
+            {
+                case "int": tipo = Variable.TipoDato.Int; break;
+                case "float": tipo = Variable.TipoDato.Float; break;
+            }
+            return tipo;
+        }
         private void Variables()
         {
-            //tipo_dato Lista_identificadores; Variables?
+            //tipo_dato Lista_identificadores; Variables
+            Variable.TipoDato tipo = getTipo(getContenido());
             match(Tipos.TipoDato);
-            listaIdentificadores();
+            listaIdentificadores(tipo);
             match(";");
-            if(getClasificacion()==Tipos.TipoDato)
+        }
+        private void imprimeVariables()
+        {
+            foreach(Variable v in listaVariables)
             {
-                Variables();
+                log.WriteLine(v.getNombre() + "  ()" + v.getTipo() + ") = " + v.getValor());
             }
         }
         //Lista_identificadores -> identificador (, Lista_identificadores)?
-        private void listaIdentificadores()
+        private void listaIdentificadores(Variable.TipoDato t) 
         {
+            listaVariables.Add(new Variable(getContenido(),t));
             match(Tipos.Identificador);
             if(getContenido() == ",")
             {
                 match(",");
-                listaIdentificadores();
+                listaIdentificadores(t);
             }
         }
         //BloqueInstrucciones -> { listaIntrucciones? }
@@ -331,6 +348,12 @@ namespace semantica
             else
             {
                 match("(");
+                if(getClasificacion()== Tipos.TipoDato)
+                {
+                    match(Tipos.TipoDato);
+                    match(")");
+                    match("(");
+                }
                 Expresion();
                 match(")");
             }
