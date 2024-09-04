@@ -1,4 +1,59 @@
 Analizador Lexico
 Autor: Rafael Mejía
 static = Identificador
-Error: Sintaxis: se espera un Numero
+void = Identificador
+Main = Identificador
+( = Caracter
+string = Identificador
+[ = Caracter
+] = Caracter
+args = Identificador
+) = Caracter
+{ = Inicio
+char = TipoDato
+a = Identificador
+, = Caracter
+b = Identificador
+, = Caracter
+c = Identificador
+, = Caracter
+d = Identificador
+; = FinSentencia
+float = TipoDato
+pi = Identificador
+, = Caracter
+e = Identificador
+; = FinSentencia
+a = Identificador
+= = Asignacion
+( = Caracter
+int = TipoDato
+) = Caracter
+( = Caracter
+( = Caracter
+3 = Numero
++ = OpTermino
+5 = Numero
+) = Caracter
+* = OpFactor
+8 = Numero
+- = OpTermino
+( = Caracter
+10 = Numero
+- = OpTermino
+4 = Numero
+) = Caracter
+/ = OpFactor
+2 = Numero
+) = Caracter
+; = FinSentencia
+} = Fin
+Stack:
+3 5 8 10 4 2 
+￿ = Caracter
+a (Char) = 0
+b (Char) = 0
+c (Char) = 0
+d (Char) = 0
+pi (Float) = 0
+e (Float) = 0

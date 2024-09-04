@@ -11,20 +11,15 @@ namespace Semantica
         {
             try
             {
-                using (Sintaxis L = new Sintaxis("prueba.cpp"))
+                using (Lenguaje L = new Lenguaje("prueba.cpp"))
                 {
-                    L.match(Token.Tipos.Numero);
-                    //L.match("+");
-                    L.match(Token.Tipos.OpTermino);
-                    L.match(Token.Tipos.Identificador);
-                    L.match(Token.Tipos.FinSentencia);
-                    L.match(";");
                     /*
                     while(!L.finArchivo())
                     {
                         L.nextToken();
                     }
                     */
+                    L.Programa();
                 }
             }
             catch (Exception e)
