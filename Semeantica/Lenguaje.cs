@@ -9,7 +9,7 @@ using System.Threading.Tasks;
     1. Colocar la linea en los errores lexicos y sintaxicos
     --- ESTA NO --- 2. Cambiar clase token por atributos publicos usando get y set
     3. Cambiar los contructores de la calse lexico usando parametros por default
-    4.
+    4.Errror Semantico,cambio de varia
 */
 
 namespace Semantica
@@ -33,6 +33,7 @@ namespace Semantica
         // Program -> Librerias? Variables? Main
         public void Programa()
         {
+
             if (getContenido() == "using")
             {
                 Librerias();
@@ -167,7 +168,7 @@ namespace Semantica
             string variable = getContenido();
             match(Tipos.Identificador);
             match("=");
-            Expresion();
+            Expresion();            
             match(";");
             imprimeStack();
             log.WriteLine(variable + " = " + S.Pop());

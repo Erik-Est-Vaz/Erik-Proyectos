@@ -48,8 +48,9 @@ int = TipoDato
 ) = Caracter
 ; = FinSentencia
 } = Fin
-Stack:
-3 5 8 10 4 2 
+ESTO DICE QUE TIENE EL STACK
+61 
+a = 61
 ￿ = Caracter
 a (Char) = 0
 b (Char) = 0
