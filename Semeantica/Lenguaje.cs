@@ -9,7 +9,7 @@ using System.Threading.Tasks;
     1. Colocar la linea en los errores lexicos y sintaxicos
     --- ESTA NO --- 2. Cambiar clase token por atributos publicos usando get y set
     3. Cambiar los contructores de la calse lexico usando parametros por default
-    4.Errror Semantico,cambio de variade3fefv3f
+    4.Errror Semantico,cambio de variables
 */
 
 namespace Semantica
