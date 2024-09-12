@@ -18,5 +18,13 @@ b = Identificador
 c = Identificador
 , = Caracter
 d = Identificador
+; = FinSentencia
 float = TipoDato
-Error: Linea 5 Sintaxis: se espera un ;
+pi = Identificador
+, = Caracter
+e = Identificador
+; = FinSentencia
+for = Ciclo
+( = Caracter
+int = TipoDato
+Error: Sintaxis: se espera un Identificador

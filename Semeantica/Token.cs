@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Dynamic;
 
 namespace Semantica
 {
@@ -14,27 +15,11 @@ namespace Semantica
             IncFactor, Cadena, Inicio, Fin, Caracter, TipoDato, Ciclo, 
             Condicion
         };
-        private string contenido;
-        private Tipos clasificacion;
+        public string Contenido{ get; set;}
+        public Tipos Clasificacion{ get; set;}
         public Token()
         {
-            contenido = "";
-        }
-        public void setContenido(string contenido)
-        {
-            this.contenido = contenido;
-        }
-        public void setClasificacion(Tipos clasificacion)
-        {
-            this.clasificacion = clasificacion;
-        }
-        public string getContenido()
-        {
-            return this.contenido;
-        }
-        public Tipos getClasificacion()
-        {
-            return this.clasificacion;
+            Contenido = "";
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Semantica
         }
         public void match(string espera)
         {
-            if (getContenido() == espera)
+            if (Contenido == espera)
             {
                 errorLinea = nextToken();
             }
@@ -29,7 +29,7 @@ namespace Semantica
         }
         public void match(Tipos espera)
         {
-            if (getClasificacion() == espera)
+            if (Clasificacion == espera)
             {
                 nextToken();
             }
