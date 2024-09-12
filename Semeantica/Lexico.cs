@@ -232,6 +232,10 @@ namespace Semantica
                     {
                         buffer += c;
                     }
+                    if (c == '\n')
+                    {
+                        linea++;
+                    }
                     archivo.Read();
                 }
             }
