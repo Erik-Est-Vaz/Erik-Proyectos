@@ -183,7 +183,7 @@ namespace Semantica
             }
             match(";");
         }
-
+    
         private void limiteVariables(float stack, string variable)
         {
             foreach(Variable v in listaVariables)

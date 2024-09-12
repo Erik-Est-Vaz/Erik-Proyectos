@@ -7,7 +7,7 @@ namespace Semantica
 {
     public class Sintaxis : Lexico
     {
-        int errorLinea;
+        int errorLinea;    
         public Sintaxis()
         {
             nextToken();

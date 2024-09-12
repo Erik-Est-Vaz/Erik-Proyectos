@@ -54,7 +54,7 @@ namespace Semantica
         };
         public Lexico(string nombre = "prueba") // Constructor
         {
-            linea = 1;
+            linea = 1;  
             log = new StreamWriter(Path.GetFileNameWithoutExtension(nombre) + ".log");
             log.AutoFlush = true;
             asm = new StreamWriter(Path.GetFileNameWithoutExtension(nombre) + ".asm");
