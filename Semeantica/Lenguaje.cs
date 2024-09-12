@@ -195,12 +195,12 @@ namespace Semantica
                     {
                         case("Int"): if(Math.Abs(stack) > 65535)
                         {
-                            throw new Error("Semantico: La variable " + variable + " de tipo (" + s + ") excedio su limite de memoria",log);
+                            throw new Error("Linea " + errorLinea + " Semantico: La variable " + variable + " de tipo (" + s + ") excedio su limite de memoria",log);
                         }
                         v.setValor(stack);break;
                         case("Float"):v.setValor(stack);break;
                         default: if(Math.Abs(stack) > 255){ 
-                            throw new Error("Semantico: La variable " + variable + " de tipo (" + s + ") excedio su limite de memoria",log);
+                            throw new Error("Linea " + errorLinea + " Semantico: La variable " + variable + " de tipo (" + s + ") excedio su limite de memoria",log);
                         }
                         v.setValor(stack);break;
                     }

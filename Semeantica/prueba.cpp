@@ -3,9 +3,12 @@
 static void Main(string[] args)
 {
     char a,b,c,d;
-    float pi,e
+    float pi,e;
     
-    a=255;
+    for(int i="a"; i<=1; i++)
+    {
+        
+    }
 
 
 }

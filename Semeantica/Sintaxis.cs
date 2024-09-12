@@ -7,7 +7,7 @@ namespace Semantica
 {
     public class Sintaxis : Lexico
     {
-        int errorLinea;    
+        public int errorLinea{get; set; }   
         public Sintaxis()
         {
             nextToken();
@@ -35,7 +35,7 @@ namespace Semantica
             }
             else
             {
-                throw new Error("Sintaxis: se espera un "+espera,log);
+                throw new Error("Linea " + errorLinea + " Sintaxis: se espera un "+espera,log);
             }
         }
     }
