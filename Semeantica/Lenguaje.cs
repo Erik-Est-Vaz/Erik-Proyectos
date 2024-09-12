@@ -289,6 +289,7 @@ namespace Semantica
             Asignacion();
             Condicion();
             match(";");
+            match(Tipos.Identificador);
             Incremento();
             match(")");
             if (Contenido == "{")

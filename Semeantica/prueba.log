@@ -24,7 +24,45 @@ pi = Identificador
 , = Caracter
 e = Identificador
 ; = FinSentencia
-for = Ciclo
+a = Identificador
+= = Asignacion
 ( = Caracter
 int = TipoDato
-Error: Linea 8Sintaxis: se espera un Identificador
+) = Caracter
+( = Caracter
+( = Caracter
+3 = Numero
++ = OpTermino
+5 = Numero
+) = Caracter
+* = OpFactor
+8 = Numero
+- = OpTermino
+( = Caracter
+10 = Numero
+- = OpTermino
+4 = Numero
+) = Caracter
+/ = OpFactor
+2 = Numero
+) = Caracter
+; = FinSentencia
+ESTO DICE QUE TIENE EL STACK
+
+a = 61
+d = Identificador
+= = Asignacion
+( = Caracter
+34 = Numero
++ = OpTermino
+1 = Numero
+) = Caracter
+; = FinSentencia
+ESTO DICE QUE TIENE EL STACK
+
+d = 35
+a = Identificador
+= = Asignacion
+257 = Numero
+; = FinSentencia
+Error: Linea 7 Semantico: La variable a de tipo (Char) excedio su limite de memoria
