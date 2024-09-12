@@ -52,24 +52,7 @@ namespace Semantica
             {F,F, 32, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F}
 
         };
-        public Lexico() // Constructor
-        {
-            linea = 0;
-            log = new StreamWriter("prueba.log");
-            log.AutoFlush = true;
-            asm = new StreamWriter("prueba.asm");
-            asm.AutoFlush = true;
-            log.WriteLine("Analizador Lexico");
-            log.WriteLine("Autor: Rafael Mejía");
-            asm.WriteLine("; Autor: Rafael Mejía");
-
-            if (!File.Exists("prueba.cpp"))
-            {
-                throw new Error("El archivo prueba.cpp no existe", log);
-            }
-            archivo = new StreamReader("prueba.cpp");
-        }
-        public Lexico(string nombre) // Constructor
+        public Lexico(string nombre = "prueba") // Constructor
         {
             linea = 0;
             log = new StreamWriter(Path.GetFileNameWithoutExtension(nombre) + ".log");
