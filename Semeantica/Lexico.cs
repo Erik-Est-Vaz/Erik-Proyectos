@@ -254,10 +254,10 @@ namespace Semantica
                     throw new Error(" Se espera un cierre de comentario\n " + buffer, log);
                 }
             }
-            setContenido(buffer);
+            Contenido=buffer;
             if (Clasificacion == Tipos.Identificador)
             {
-                switch (Clasificacion)
+                switch (Contenido)
                 {
                     case "char":
                     case "int":

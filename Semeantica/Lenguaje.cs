@@ -82,7 +82,7 @@ namespace Semantica
         //Variables -> tipo_dato Lista_identificadores; Variables?
         private void Variables()
         {
-            Variable.TipoDato tipo = getTipo(getContenido());
+            Variable.TipoDato tipo = getTipo(Contenido);
             match(Tipos.TipoDato);
             listaIdentificadores(tipo);
             match(";");

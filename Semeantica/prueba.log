@@ -23,8 +23,5 @@ float = TipoDato
 pi = Identificador
 , = Caracter
 e = Identificador
-; = FinSentencia
-for = Ciclo
-( = Caracter
-int = TipoDato
-Error: Sintaxis: se espera un Identificador
+a = Identificador
+Error: Linea 6 Sintaxis: se espera un ;
