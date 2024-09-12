@@ -163,16 +163,27 @@ namespace Semantica
         }
 
         // Asignacion -> Identificador = Expresion;
+        
         private void Asignacion()
         {
             string variable = getContenido();
             match(Tipos.Identificador);
-            match("=");
-            Expresion();            
+            if(getContenido() != "=")
+            {
+                Incremento();
+            }
+            else
+            {
+                match("=");
+                Expresion();
+                float stack = S.Pop();
+                //limiteVariables(stack, variable);
+                imprimeStack();
+                log.WriteLine(variable + " = " + stack);
+            }
             match(";");
-            imprimeStack();
-            log.WriteLine(variable + " = " + S.Pop());
         }
+
 
         //If -> if (Condicion) bloqueInstrucciones | instruccion (else bloqueInstrucciones | instruccion)?
         private void If()
@@ -271,14 +282,38 @@ namespace Semantica
         //Incremento -> Identificador ++ | --
         private void Incremento()
         {
-            match(Tipos.Identificador);
             if (getContenido() == "++")
             {
                 match("++");
             }
-            else
+            else if (getContenido() == "--")
             {
                 match("--");
+            }
+            else if (getContenido() == "+=")
+            {
+                match("+=");
+                Expresion();
+            }
+            else if (getContenido() == "-=")
+            {
+                match("-=");
+                Expresion();
+            }
+            else if (getContenido() == "*=")
+            {
+                match("*=");
+                Expresion();
+            }
+            else if (getContenido() == "/=")
+            {
+                match("/=");
+                Expresion();
+            }
+            else if (getContenido() == "%=")
+            {
+                match("%=");
+                Expresion();
             }
         }
 
