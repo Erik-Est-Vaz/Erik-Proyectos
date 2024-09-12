@@ -54,7 +54,7 @@ namespace Semantica
         };
         public Lexico(string nombre = "prueba") // Constructor
         {
-            linea = 0;
+            linea = 1;
             log = new StreamWriter(Path.GetFileNameWithoutExtension(nombre) + ".log");
             log.AutoFlush = true;
             asm = new StreamWriter(Path.GetFileNameWithoutExtension(nombre) + ".asm");
@@ -210,7 +210,7 @@ namespace Semantica
                 case 26: setClasificacion(Tipos.Caracter); break;
             }
         }
-        public void nextToken()
+        public int nextToken()
         {
             char c;
             string buffer = "";
@@ -271,6 +271,8 @@ namespace Semantica
                 }
             }
             log.WriteLine(getContenido() + " = " + getClasificacion());
+
+            return linea;
         }
         public bool finArchivo()
         {

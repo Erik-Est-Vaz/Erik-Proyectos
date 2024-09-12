@@ -1,25 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mauricio\\OneDrive\\Documentos\\Proyectos\\1\\Semeantica\\Semeantica.csproj": {}
+    "C:\\Users\\anony\\Documents\\LYA II\\Erik-Proyectos\\Semeantica\\Semeantica.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mauricio\\OneDrive\\Documentos\\Proyectos\\1\\Semeantica\\Semeantica.csproj": {
+    "C:\\Users\\anony\\Documents\\LYA II\\Erik-Proyectos\\Semeantica\\Semeantica.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mauricio\\OneDrive\\Documentos\\Proyectos\\1\\Semeantica\\Semeantica.csproj",
+        "projectUniqueName": "C:\\Users\\anony\\Documents\\LYA II\\Erik-Proyectos\\Semeantica\\Semeantica.csproj",
         "projectName": "Semeantica",
-        "projectPath": "C:\\Users\\Mauricio\\OneDrive\\Documentos\\Proyectos\\1\\Semeantica\\Semeantica.csproj",
-        "packagesPath": "C:\\Users\\Mauricio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mauricio\\OneDrive\\Documentos\\Proyectos\\1\\Semeantica\\obj\\",
+        "projectPath": "C:\\Users\\anony\\Documents\\LYA II\\Erik-Proyectos\\Semeantica\\Semeantica.csproj",
+        "packagesPath": "C:\\Users\\anony\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\anony\\Documents\\LYA II\\Erik-Proyectos\\Semeantica\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Mauricio\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\anony\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
