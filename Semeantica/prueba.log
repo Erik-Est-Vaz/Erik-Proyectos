@@ -25,6 +25,7 @@ pi = Identificador
 e = Identificador
 ; = FinSentencia
 a = Identificador
+ando en asignación
 = = Asignacion
 ( = Caracter
 int = TipoDato
@@ -51,6 +52,7 @@ ESTO DICE QUE TIENE EL STACK
 
 a = 61
 d = Identificador
+ando en asignación
 = = Asignacion
 ( = Caracter
 34 = Numero
@@ -62,7 +64,52 @@ ESTO DICE QUE TIENE EL STACK
 
 d = 35
 a = Identificador
+ando en asignación
 = = Asignacion
-257 = Numero
+255 = Numero
 ; = FinSentencia
-Error: Linea 7 Semantico: La variable a de tipo (Char) excedio su limite de memoria
+ESTO DICE QUE TIENE EL STACK
+
+a = 255
+b = Identificador
+ando en asignación
+++ = IncTermino
+; = FinSentencia
+c = Identificador
+ando en asignación
+-- = IncTermino
+; = FinSentencia
+for = Ciclo
+( = Caracter
+i = Identificador
+= = Asignacion
+0 = Numero
+; = FinSentencia
+ESTO DICE QUE TIENE EL STACK
+
+i = 0
+i = Identificador
+< = OpRelacional
+2 = Numero
+; = FinSentencia
+i = Identificador
+++ = IncTermino
+) = Caracter
+{ = Inicio
+a = Identificador
+ando en asignación
+= = Asignacion
+1 = Numero
+; = FinSentencia
+ESTO DICE QUE TIENE EL STACK
+2 
+a = 1
+} = Fin
+} = Fin
+￿ = Caracter
+a (Char) = 1
+b (Char) = 0
+c (Char) = 0
+d (Char) = 35
+pi (Float) = 0
+e (Float) = 0

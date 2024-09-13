@@ -4,9 +4,13 @@ static void Main(string[] args)
     float pi,e;
     a=(int)((3+5)*8-(10-4)/2);
     d = (34 + 1);
-    a = 257;
+    a = 255;
     b++;
     c--;
+    for(i=0 ; i<2;i++)
+    {
+        a=1;
+    }
   
 
 }

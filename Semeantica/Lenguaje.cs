@@ -156,7 +156,7 @@ namespace Semantica
             {
                 Variables();
             }
-            else
+            else if(Contenido != "}")
             {
                 Asignacion();
             }
