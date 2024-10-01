@@ -19,7 +19,6 @@ namespace Semantica
         {
             this.nombre = nombre;
             this.tipo = tipo;
-            this.valor = 0;
         }
         public void setValor(float valor)
         {

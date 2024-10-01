@@ -7,24 +7,23 @@ namespace Semantica
 {
     public class Sintaxis : Lexico
     {
-        public int errorLinea{get; set; }   
         public Sintaxis()
         {
             nextToken();
         }
         public Sintaxis(string nombre) : base(nombre)
         {
-            errorLinea = nextToken();
+            nextToken();
         }
         public void match(string espera)
         {
             if (Contenido == espera)
             {
-                errorLinea = nextToken();
+                nextToken();
             }
             else
             {
-                throw new Error("Linea " + errorLinea + " Sintaxis: se espera un "+espera,log);
+                throw new Error("Sintaxis: se espera un " + espera + " (" + Contenido + ")",log);
             }
         }
         public void match(Tipos espera)
@@ -35,7 +34,7 @@ namespace Semantica
             }
             else
             {
-                throw new Error("Linea " + errorLinea + " Sintaxis: se espera un "+espera,log);
+                throw new Error("Sintaxis: se espera un "+espera+" ("+Contenido+")",log);
             }
         }
     }

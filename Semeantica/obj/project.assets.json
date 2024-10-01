@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Mauricio\\.nuget\\packages\\": {}
+    "C:\\Users\\flaki\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mauricio\\OneDrive\\Documentos\\Proyectos\\Erik-Proyectos-1\\Semeantica\\Semeantica.csproj",
+      "projectUniqueName": "C:\\Users\\flaki\\Documents\\Erik-Proyectos\\Semeantica\\Semeantica.csproj",
       "projectName": "Semeantica",
-      "projectPath": "C:\\Users\\Mauricio\\OneDrive\\Documentos\\Proyectos\\Erik-Proyectos-1\\Semeantica\\Semeantica.csproj",
-      "packagesPath": "C:\\Users\\Mauricio\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mauricio\\OneDrive\\Documentos\\Proyectos\\Erik-Proyectos-1\\Semeantica\\obj\\",
+      "projectPath": "C:\\Users\\flaki\\Documents\\Erik-Proyectos\\Semeantica\\Semeantica.csproj",
+      "packagesPath": "C:\\Users\\flaki\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\flaki\\Documents\\Erik-Proyectos\\Semeantica\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Mauricio\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\flaki\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"

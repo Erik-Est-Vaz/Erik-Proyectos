@@ -58,3 +58,17 @@ C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\
 C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.pdb
 C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.genruntimeconfig.cache
 C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\ref\Semeantica.dll
+C:\Proyectos\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.exe
+C:\Proyectos\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.deps.json
+C:\Proyectos\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.runtimeconfig.json
+C:\Proyectos\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.dll
+C:\Proyectos\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.pdb
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.GeneratedMSBuildEditorConfig.editorconfig
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.AssemblyInfoInputs.cache
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.AssemblyInfo.cs
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.csproj.CoreCompileInputs.cache
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.dll
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\refint\Semeantica.dll
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.pdb
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.genruntimeconfig.cache
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\ref\Semeantica.dll
