@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 /*
 
-    1. Usar find en lugar del for each
-    2. Valiar que no existan varibles duplicadas
-    3. Validar que existan las variables en las expressions matematicas
+    1. Usar find en lugar del for each :)
+    2. Valiar que no existan varibles duplicadas ;)
+    3. Validar que existan las variables en las expressions matematicas :)
        Asignacion
     4. Asinar una expresion matematica a la variable al momento de declararla
        verificando la semantica
@@ -123,12 +123,31 @@ namespace Semantica
         private void listaIdentificadores(Variable.TipoDato t)
         {
             listaVariables.Add(new Variable(Contenido, t));
-            match(Tipos.Identificador);
-            if (Contenido == ",")
+
+            var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == Contenido; });
+            Console.WriteLine(v.getNombre());
+
+
+            if (v != null)
             {
-                match(",");
-                listaIdentificadores(t);
+                throw new Exception("Error Semantico: en " + linea +" Variable duplicada " + Contenido);
             }
+            else
+            {
+                match(Tipos.Identificador);
+                if(Contenido != ",")
+                {
+
+                    Asignacion(true);
+
+                }
+                else
+                {
+                    match(",");
+                    listaIdentificadores(t);
+                }
+            }
+            
         }
 
 
@@ -185,6 +204,7 @@ namespace Semantica
             }
             else if (Contenido != "}")
             {
+                match(Tipos.Identificador);
                 Asignacion(ejecutar);
                 match(";");
             }
@@ -195,21 +215,15 @@ namespace Semantica
         private void Asignacion(bool ejecutar)
         {
             string variable = Contenido;
-            match(Tipos.Identificador);
+            //match(Tipos.Identificador);
 
             var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == variable; });
             float nuevoValor = v.getValor();
 
-            //Verificar esta asignación
             tipoDatoExpresion = Variable.TipoDato.Char;
-
-            if (Contenido != "=")
+            
+            if (Contenido == "=")
             {
-                Incremento();
-            }
-            else
-            {
-
                 match("=");
                 if (Contenido == "Console")
                 {
@@ -222,12 +236,13 @@ namespace Semantica
                         {
                             float valor = Console.Read();
                         }
-                        //8
+                        // 8
                     }
                     else
                     {
                         match("ReadLine");
-                        nuevoValor = float.Parse(Console.ReadLine());
+                        nuevoValor = float.Parse("" + Console.ReadLine());
+                        // 8
                     }
                     match("(");
                     match(")");
@@ -237,28 +252,58 @@ namespace Semantica
                     Expresion();
                     nuevoValor = S.Pop();
                 }
-
-                //Aquí el muy queridisimo profesor puso el incremento pero lo voy a cambiar como nosotros lo teníamos
-                /*
-                match("=");
-                Expresion();
-                float stack = S.Pop();
-                limiteVariables(stack, variable);
-                imprimeStack();
-                log.WriteLine(variable + " = " + stack);
-                */
             }
-            //match(";");
-            if (analisisSemantico(v, nuevoValor))
+            else if (Contenido == "++")
             {
-                if (ejecutar)
-                {
-                    v.setValor(nuevoValor);
-                }
+                match("++");
+                nuevoValor++;
+            }
+            else if (Contenido == "--")
+            {
+                match("--");
+                nuevoValor--;
+            }
+            else if (Contenido == "+=")
+            {
+                match("+=");
+                Expresion();
+                nuevoValor += S.Pop();
+            }
+            else if (Contenido == "-=")
+            {
+                match("-=");
+                Expresion();
+                nuevoValor -= S.Pop();
+            }
+            else if (Contenido == "*=")
+            {
+                match("*=");
+                Expresion();
+                nuevoValor *= S.Pop();
+            }
+            else if (Contenido == "/=")
+            {
+                match("/=");
+                Expresion();
+                nuevoValor /= S.Pop();
             }
             else
             {
-                throw new Error("Error,  en linea " + linea + ", Semantico no se puede asignar un " + tipoDatoExpresion + " a un " + v.getTipo(), log);
+                match("%=");
+                Expresion();
+                nuevoValor %= S.Pop();
+            }
+            // match(";");
+            if (analisisSemantico(v, nuevoValor))
+            {
+                if (ejecutar)
+                    v.setValor(nuevoValor);
+            }
+            else
+            {
+                //Modificar tipoDatoExpresion
+                throw new Error("Semantico, no puedo asignar un " + tipoDatoExpresion +
+                                " a un " + v.getTipo(), log);
             }
             log.WriteLine(variable + " = " + nuevoValor);
         }
@@ -452,6 +497,7 @@ namespace Semantica
             match("for");
             match("(");
 
+            match(Tipos.Identificador);
             Asignacion(ejecutar);
 
             match(";");
@@ -462,6 +508,7 @@ namespace Semantica
 
             //match(Tipos.Identificador);
             //Incremento();
+            match(Tipos.Identificador);
             Asignacion(ejecutar);
 
             match(")");
@@ -476,7 +523,7 @@ namespace Semantica
 
         }
 
-        //Incremento -> Identificador ++ | --
+        /*Incremento -> Identificador ++ | --
         private void Incremento()
         {
             if (Contenido == "++")
@@ -513,6 +560,7 @@ namespace Semantica
                 Expresion();
             }
         }
+        */
 
         //Console -> Console.(WriteLine|Write) (cadena?); | Console.(Read | ReadLine) ();
         private void console(bool ejecutar)
@@ -656,12 +704,21 @@ namespace Semantica
             else if (Clasificacion == Tipos.Identificador)
             {
                 var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == Contenido; });
-                S.Push(v.getValor());
-                if (tipoDatoExpresion < v.getTipo())
+
+                if(v != null)
                 {
-                    tipoDatoExpresion = v.getTipo();
+                    S.Push(v.getValor());
+                    if (tipoDatoExpresion < v.getTipo())
+                    {
+                        tipoDatoExpresion = v.getTipo();
+                    }
+                    match(Tipos.Identificador);
                 }
-                match(Tipos.Identificador);
+                else
+                {
+                    //ERROR
+                }
+                
             }
             else
             {
