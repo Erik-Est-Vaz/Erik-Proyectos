@@ -11,7 +11,7 @@ using System.Threading.Tasks;
     2. Valiar que no existan varibles duplicadas ;)
     3. Validar que existan las variables en las expressions matematicas :)
        Asignacion
-    4. Asinar una expresion matematica a la variable al momento de declararla
+    4. Asinar una expresion matematica a la variable al momento de declararla :)
        verificando la semantica
     5. Validar que en el ReadLine se capturen solo numeros (Excepcion)
     6. listaConcatenacion: 30, 14, 15 ,12, 0
@@ -99,12 +99,18 @@ namespace Semantica
 
 
         //Variables -> tipo_dato Lista_identificadores; Variables?
-        private void Variables()
+        private string Variables(bool ejecutar)
         {
+            //listaVariables.Add(new Variable("efnhjesflo4hesf", Variable.TipoDato.Char));
             Variable.TipoDato tipo = getTipo(Contenido);
             match(Tipos.TipoDato);
-            listaIdentificadores(tipo);
-            match(";");
+
+            string var = Contenido;
+
+            listaIdentificadores(tipo,ejecutar);
+            //match(";");
+            return var;
+                
         }
 
 
@@ -120,31 +126,35 @@ namespace Semantica
 
         // -->  Aqui hay que hacer una modificación
         //ListaIdentificadores -> identificador (,ListaIdentificadores)?
-        private void listaIdentificadores(Variable.TipoDato t)
+        private void listaIdentificadores(Variable.TipoDato t, bool ejecutar)
         {
-            listaVariables.Add(new Variable(Contenido, t));
-
-            var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == Contenido; });
-            Console.WriteLine(v.getNombre());
-
-
+            var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == ""; });
+            if(ejecutar)
+            {
+                v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == Contenido && x.getTipo() == t; });
+            }
+            else
+                v = null;
+                
             if (v != null)
             {
                 throw new Exception("Error Semantico: en " + linea +" Variable duplicada " + Contenido);
             }
             else
             {
+                listaVariables.Add(new Variable(Contenido, t));
+
+                string var = Contenido;
+
                 match(Tipos.Identificador);
-                if(Contenido != ",")
+                if(Contenido != "," && Contenido != ";")
                 {
-
-                    Asignacion(true);
-
+                    Asignacion(ejecutar,var);
                 }
-                else
+                else if(Contenido == ",")
                 {
                     match(",");
-                    listaIdentificadores(t);
+                    listaIdentificadores(t,true);
                 }
             }
             
@@ -198,25 +208,25 @@ namespace Semantica
             {
                 For(ejecutar);
             }
-            if (Clasificacion == Tipos.TipoDato)
+            else if (Clasificacion == Tipos.TipoDato)
             {
-                Variables();
+                Variables(true);
+                match(";");
             }
             else if (Contenido != "}")
             {
                 match(Tipos.Identificador);
-                Asignacion(ejecutar);
+                Asignacion(ejecutar, Contenido);
                 match(";");
             }
         }
 
         //Modificación 6
         // Asignacion -> Identificador = Expresion;
-        private void Asignacion(bool ejecutar)
+        private void Asignacion(bool ejecutar, string variable)
         {
-            string variable = Contenido;
+            //string variable = Contenido;
             //match(Tipos.Identificador);
-
             var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == variable; });
             float nuevoValor = v.getValor();
 
@@ -255,6 +265,7 @@ namespace Semantica
             }
             else if (Contenido == "++")
             {
+                //Console.WriteLine(Contenido + "esto tiene contenido");
                 match("++");
                 nuevoValor++;
             }
@@ -296,8 +307,11 @@ namespace Semantica
             // match(";");
             if (analisisSemantico(v, nuevoValor))
             {
+                //Console.WriteLine("estoy asignando nuevovalor");
                 if (ejecutar)
                     v.setValor(nuevoValor);
+                    //Console.WriteLine(v.getNombre() + " " + v.getValor());
+                //Console.WriteLine("**********************************************" + variable + " = " + nuevoValor);
             }
             else
             {
@@ -305,7 +319,7 @@ namespace Semantica
                 throw new Error("Semantico, no puedo asignar un " + tipoDatoExpresion +
                                 " a un " + v.getTipo(), log);
             }
-            log.WriteLine(variable + " = " + nuevoValor);
+            
         }
 
 
@@ -426,7 +440,7 @@ namespace Semantica
 
             float R2 = S.Pop();
             float R1 = S.Pop();
-
+            
             switch (operador)
             {
                 case ">" : return R1 > R2;
@@ -494,33 +508,65 @@ namespace Semantica
         //For -> for(Asignacion Condicion; Incremento) BloqueInstrucciones | Intruccion
         private void For(bool ejecutar)
         {
-            match("for");
-            match("(");
-
-            match(Tipos.Identificador);
-            Asignacion(ejecutar);
-
-            match(";");
-
-            Condicion();
-
-            match(";");
-
-            //match(Tipos.Identificador);
-            //Incremento();
-            match(Tipos.Identificador);
-            Asignacion(ejecutar);
-
-            match(")");
-            if (Contenido == "{")
+            
+            int cTemp = caracter - 4;
+            int lTemp = linea;
+            bool resultado = true;
+            do
             {
-                bloqueInstrucciones(ejecutar);
-            }
-            else
-            {
-                Instruccion(ejecutar);
-            }
+                match("for");
+                match("(");
+                
+                string var = "";
 
+                if (Clasificacion == Tipos.TipoDato)
+                {
+                    var = Variables(resultado && ejecutar);
+                }
+                else /*if (Clasificacion == Tipos.Identificador)*/
+                {
+                    var = Contenido;
+                    match(Tipos.Identificador);
+                    Asignacion(resultado && ejecutar, Contenido);
+                }
+
+                ejecutar = false;
+
+                match(";");
+
+                resultado = Condicion();
+
+                if(!resultado)
+                {
+                    ejecutar = false;
+                }
+
+                match(";");
+
+                match(Tipos.Identificador);
+                Asignacion(resultado,var);
+                
+                match(")");
+                if (Contenido == "{")
+                {
+                    bloqueInstrucciones(resultado);
+                }
+                else
+                {
+                    Instruccion(resultado);
+                }
+
+                if(resultado)
+                {
+                    caracter = cTemp;
+                    linea = lTemp;
+                    archivo.DiscardBufferedData();
+                    archivo.BaseStream.Seek(cTemp, SeekOrigin.Begin);
+                    nextToken();
+                }
+
+            }
+            while(resultado);
         }
 
         /*Incremento -> Identificador ++ | --
@@ -589,6 +635,10 @@ namespace Semantica
                 {
                     listaConcatenacion();
                 }
+            }
+            else if(/*xd*/true)
+            {
+
             }
             match(")");
             match(";");
@@ -703,6 +753,9 @@ namespace Semantica
             }
             else if (Clasificacion == Tipos.Identificador)
             {
+                
+                string variable = Contenido;
+
                 var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == Contenido; });
 
                 if(v != null)
@@ -716,7 +769,7 @@ namespace Semantica
                 }
                 else
                 {
-                    //ERROR
+                    throw new Error("Linea " + linea + " Semantico: La variable " + variable + " no existe", log);
                 }
                 
             }

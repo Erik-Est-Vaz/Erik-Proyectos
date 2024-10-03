@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\flaki\\Documents\\Erik-Proyectos-1\\Semeantica\\Semeantica.csproj",
+      "projectUniqueName": "C:\\Users\\flaki\\Documents\\Erik-Proyectos\\Semeantica\\Semeantica.csproj",
       "projectName": "Semeantica",
-      "projectPath": "C:\\Users\\flaki\\Documents\\Erik-Proyectos-1\\Semeantica\\Semeantica.csproj",
+      "projectPath": "C:\\Users\\flaki\\Documents\\Erik-Proyectos\\Semeantica\\Semeantica.csproj",
       "packagesPath": "C:\\Users\\flaki\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\flaki\\Documents\\Erik-Proyectos-1\\Semeantica\\obj\\",
+      "outputPath": "C:\\Users\\flaki\\Documents\\Erik-Proyectos\\Semeantica\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\flaki\\AppData\\Roaming\\NuGet\\NuGet.Config"
