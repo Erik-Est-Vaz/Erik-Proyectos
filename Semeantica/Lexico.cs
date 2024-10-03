@@ -240,15 +240,15 @@ namespace Semantica
             {
                 if (Clasificacion == Tipos.Numero)
                 {
-                    throw new Error(" Se espera un digito " + buffer, log);
+                    throw new Error("Error Lexico: en " + linea +" Se espera un digito " + buffer, log);
                 }
                 else if (Clasificacion == Tipos.Cadena)
                 {
-                    throw new Error(" Se espera cierre de cadena " + buffer, log);
+                    throw new Error("Error Lexico: en " + linea +" Se espera cierre de cadena " + buffer, log);
                 }
                 else if (Clasificacion == Tipos.OpFactor)
                 {
-                    throw new Error(" Se espera un cierre de comentario\n " + buffer, log);
+                    throw new Error("Error Lexico: en " + linea +" Se espera un cierre de comentario\n " + buffer, log);
                 }
             }
             Contenido = buffer;
