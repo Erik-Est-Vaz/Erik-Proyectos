@@ -569,48 +569,14 @@ namespace Semantica
             while(resultado);
         }
 
-        /*Incremento -> Identificador ++ | --
-        private void Incremento()
-        {
-            if (Contenido == "++")
-            {
-                match("++");
-            }
-            else if (Contenido == "--")
-            {
-                match("--");
-            }
-            else if (Contenido == "+=")
-            {
-                match("+=");
-                Expresion();
-            }
-            else if (Contenido == "-=")
-            {
-                match("-=");
-                Expresion();
-            }
-            else if (Contenido == "*=")
-            {
-                match("*=");
-                Expresion();
-            }
-            else if (Contenido == "/=")
-            {
-                match("/=");
-                Expresion();
-            }
-            else if (Contenido == "%=")
-            {
-                match("%=");
-                Expresion();
-            }
-        }
-        */
 
         //Console -> Console.(WriteLine|Write) (cadena?); | Console.(Read | ReadLine) ();
         private void console(bool ejecutar)
         {
+            
+            string cadena = "";
+            bool esWrite = false;
+
             match("Console");
             match(".");
             if (Contenido == "WriteLine")
@@ -620,40 +586,183 @@ namespace Semantica
             else
             {
                 match("Write");
+                esWrite = true;
             }
             match("(");
             if (Clasificacion == Tipos.Cadena)
             {
-                if (ejecutar)
-                {
-                    Console.WriteLine(Contenido);
-                }
-                // Considerar el Write
-                // Quitar las comillas
+                
+                cadena = Contenido;
+                //Console.WriteLine("esto tiene contenido en cadena = Contenido: " + Contenido + "\n");
+
                 match(Tipos.Cadena);
                 if (Contenido == "+")
                 {
-                    listaConcatenacion();
+                    if (ejecutar)
+                    {
+
+                        Console.Write(cadena);
+                    }
+                    listaConcatenacion(ejecutar,esWrite);
+                }
+                else
+                {
+                    if (ejecutar)
+                    {
+                        
+                        //Console.WriteLine("Voy a imprimir Contenido: " + Contenido + "\n");
+                        if(!esWrite)
+                            Console.WriteLine(cadena);
+                        else
+                            Console.Write(cadena);
+                    }
                 }
             }
-            else if(/*xd*/true)
+            else if(Clasificacion == Tipos.Identificador)
             {
+                
+                string variable = Contenido;
 
+                var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == Contenido; });
+
+                if(v != null)
+                {
+                    
+                    match(Tipos.Identificador);
+                    if (Contenido == "+")
+                    {
+                        if (ejecutar)
+                        {
+                            Console.Write(v.getValor());
+                        }
+                        listaConcatenacion(ejecutar,esWrite);
+                    }
+                    else
+                    {
+                        if (ejecutar)
+                        {
+                            if(!esWrite)
+                                Console.WriteLine(v.getValor());
+                            else
+                                Console.Write(v.getValor());
+                        }
+                    }
+                }
+                else
+                {
+                    throw new Error("Linea " + linea + " Semantico: La variable " + variable + " no existe", log);
+                }
             }
+            else
+            {
+                match("(");
+                Expresion();
+                match(")");
+                float nuevoValor = S.Pop();
+                if (Contenido == "+")
+                {
+                    if (ejecutar)
+                    {
+                        Console.Write(nuevoValor);
+                    }
+                    listaConcatenacion(ejecutar,esWrite);
+                }
+                else
+                {
+                    if (ejecutar)
+                    {
+                        if(!esWrite)
+                            Console.WriteLine(nuevoValor);
+                        else
+                            Console.Write(nuevoValor);
+                    }
+                }
+                
+            }
+            //Console.WriteLine("esto tiene contenido  match()): " + Contenido + "\n");
             match(")");
             match(";");
         }
 
 
-        string listaConcatenacion()
+        string listaConcatenacion(bool ejecutar, bool esWrite)
         {
             match("+");
-            match(Tipos.Identificador); // Validar que exista la variable
-            if(Contenido == "+")
+
+            if (Clasificacion == Tipos.Cadena)
             {
-                listaConcatenacion();
+
+                if (ejecutar)
+                {
+                    if(esWrite)
+                        Console.Write(Contenido);
+                    else
+                        Console.WriteLine(Contenido);
+                }
+                match(Tipos.Cadena);
+                if (Contenido == "+")
+                {
+                    listaConcatenacion(ejecutar,esWrite);
+                }
+                return "";
             }
-            return "";
+            else if(Clasificacion == Tipos.Identificador)
+            {
+                
+                string variable = Contenido;
+
+                var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == Contenido; });
+
+                if(v != null)
+                {
+                    if (ejecutar)
+                    {
+                        if(esWrite)
+                            Console.Write(v.getValor());
+                        else
+                            Console.WriteLine(v.getValor());
+                    }
+
+                    match(Tipos.Identificador);
+                    if (Contenido == "+")
+                    {
+                        listaConcatenacion(ejecutar,esWrite);
+                    }
+                }
+                else
+                {
+                    throw new Error("Linea " + linea + " Semantico: La variable " + variable + " no existe", log);
+                }
+                return "";
+            }
+            else
+            {
+                match("(");
+                Expresion();
+                match(")");
+                float nuevoValor = S.Pop();
+                if (Contenido == "+")
+                {
+                    if (ejecutar)
+                    {
+                        if(esWrite)
+                            Console.Write(nuevoValor);
+                        else
+                            Console.WriteLine(nuevoValor);
+                    }
+                    listaConcatenacion(ejecutar,esWrite);
+                }
+                else
+                {
+                    if (ejecutar)
+                    {
+                        Console.Write(nuevoValor);
+                    }
+                }
+                return "";
+            }
+
+            
         }
 
 

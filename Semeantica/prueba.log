@@ -1,2 +1,4 @@
 Analizador Lexico
 Analisis Semantico
+x (Char) = 12
+a (Char) = 34
