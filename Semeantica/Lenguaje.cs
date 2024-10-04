@@ -517,7 +517,7 @@ namespace Semantica
                 {
                     var = Variables(resultado && ejecutar);
                 }
-                else /if (Clasificacion == Tipos.Identificador)/
+                else /*if (Clasificacion == Tipos.Identificador)*/
                 {
                     var = Contenido;
                     match(Tipos.Identificador);
@@ -539,11 +539,11 @@ namespace Semantica
                 match(")");
                 if (Contenido == "{")
                 {
-                    bloqueInstrucciones(resultado /&& !primeraVez/);
+                    bloqueInstrucciones(resultado /*&& !primeraVez*/);
                 }
                 else
                 {
-                    Instruccion(resultado /&& !primeraVez/); //
+                    Instruccion(resultado /*&& !primeraVez*/); //
                 }
 
                 
