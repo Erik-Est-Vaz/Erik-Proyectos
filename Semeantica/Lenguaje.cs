@@ -17,7 +17,7 @@ using System.Threading.Tasks;
     6. listaConcatenacion: 30, 14, 15 ,12, 0
     7. Quitar comillas y considerar el Write
     8. Emular el for -- 15 puntos
-    9. Emular el while -- 15 puntos   
+    9. Emular el while -- 15 puntos
 
 */
 
@@ -213,22 +213,36 @@ namespace Semantica
                 Variables(true);
                 match(";");
             }
-            else if (Contenido != "}")
+            else/* (Clasificacion == Tipos.Identificador)*/
             {
+                Console.WriteLine("Estoy en identificador");
+                string var = Contenido;
                 match(Tipos.Identificador);
-                Asignacion(ejecutar, Contenido);
+                Asignacion(ejecutar, var);
                 match(";");
             }
         }
 
         //Modificación 6
         // Asignacion -> Identificador = Expresion;
-        private void Asignacion(bool ejecutar, string variable)
+        private float Asignacion(bool ejecutar, string variable)
         {
             //string variable = Contenido;
             //match(Tipos.Identificador);
+
+            float nuevoValor = 0;
+
             var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == variable; });
-            float nuevoValor = v.getValor();
+
+            if(v != null)
+            {
+                nuevoValor = v.getValor();
+            }
+            else
+            {
+                throw new Exception("Error " + linea + ", no se reconoce el comando: " + variable);
+            }
+            
 
             tipoDatoExpresion = Variable.TipoDato.Char;
             
@@ -298,11 +312,15 @@ namespace Semantica
                 Expresion();
                 nuevoValor /= S.Pop();
             }
-            else
+            else if(Contenido == "%=")
             {
                 match("%=");
                 Expresion();
                 nuevoValor %= S.Pop();
+            }
+            else
+            {
+                throw new Exception("Error " + linea + ", no se reconoce el comando: " + Contenido);
             }
             // match(";");
             if (analisisSemantico(v, nuevoValor))
@@ -311,7 +329,7 @@ namespace Semantica
                 if (ejecutar)
                     v.setValor(nuevoValor);
                     //Console.WriteLine(v.getNombre() + " " + v.getValor());
-                //Console.WriteLine("**********************************************" + variable + " = " + nuevoValor);
+                //Console.WriteLine("****************" + variable + " = " + nuevoValor);
             }
             else
             {
@@ -319,6 +337,8 @@ namespace Semantica
                 throw new Error("Semantico, no puedo asignar un " + tipoDatoExpresion +
                                 " a un " + v.getTipo(), log);
             }
+
+            return nuevoValor;
             
         }
 
@@ -373,34 +393,6 @@ namespace Semantica
             return true;
         }
 
-
-        private void limiteVariables(float stack, string variable)
-        {
-            foreach (Variable v in listaVariables)
-            {
-                if (v.getNombre() == variable)
-                {
-                    String s = v.getTipo().ToString();
-                    switch (s)
-                    {
-                        case ("Int"):
-                            if (Math.Abs(stack) > 65535)
-                            {
-                                throw new Error("Linea " + linea + " Semantico: La variable " + variable + " de tipo (" + s + ") excedio su limite de memoria", log);
-                            }
-                            v.setValor(stack); break;
-                        case ("Float"): v.setValor(stack); break;
-                        default:
-                            if (Math.Abs(stack) > 255)
-                            {
-                                throw new Error("Linea " + linea + " Semantico: La variable " + variable + " de tipo (" + s + ") excedio su limite de memoria", log);
-                            }
-                            v.setValor(stack); break;
-                    }
-                }
-            }
-        }
-
         //If -> if (Condicion) bloqueInstrucciones | instruccion (else bloqueInstrucciones | instruccion)?
         private void If(bool ejecutar)
         {
@@ -440,7 +432,7 @@ namespace Semantica
 
             float R2 = S.Pop();
             float R1 = S.Pop();
-            
+
             switch (operador)
             {
                 case ">" : return R1 > R2;
@@ -455,38 +447,18 @@ namespace Semantica
         //While -> while(Condicion) bloqueInstrucciones | instruccion
         private void While(bool ejecutar)
         {
-            /*int cTemp = caracter - ?;
-            int lTemp = linea;
-            bool resultado = true;*/
-            //do
-            //{
-                match("while");
-                match("(");
-                //resultado = Condicion() && ejecutar;
-                Condicion();
-                /*if(!resultado)
-                {
-                    ejecutar = false;
-                }*/
-                match(")");
-                if (Contenido == "{")
-                {
-                    bloqueInstrucciones(ejecutar);
-                }
-                else
-                {
-                    Instruccion(ejecutar);
-                }
-
-                /*if(resultado)
-                {
-                    caracter = cTemp;
-                    linea = lTemp;
-                    archivo.DiscardBufferedData();
-                    archivo.BaseStream.Seek(cTemp, SeekOrigin.Begin);
-                    nextToken();
-                }*/
-            //} while (resultado);
+            match("while");
+            match("(");
+            Condicion();
+            match(")");
+            if (Contenido == "{")
+            {
+                bloqueInstrucciones(ejecutar);
+            }
+            else
+            {
+                Instruccion(ejecutar);
+            }
         }
 
         //Do -> do bloqueInstrucciones | intruccion while(Condicion);
@@ -532,18 +504,20 @@ namespace Semantica
             int cTemp = caracter - 4;
             int lTemp = linea;
             bool resultado = true;
+            string var;
+            float nuevoValor;
             do
             {
                 match("for");
                 match("(");
                 
-                string var = "";
+                var = "";
 
                 if (Clasificacion == Tipos.TipoDato)
                 {
                     var = Variables(resultado && ejecutar);
                 }
-                else /*if (Clasificacion == Tipos.Identificador)*/
+                else /if (Clasificacion == Tipos.Identificador)/
                 {
                     var = Contenido;
                     match(Tipos.Identificador);
@@ -556,25 +530,26 @@ namespace Semantica
 
                 resultado = Condicion();
 
-                if(!resultado)
-                {
-                    ejecutar = false;
-                }
-
                 match(";");
 
+                var = Contenido;
                 match(Tipos.Identificador);
-                Asignacion(resultado,var);
+                nuevoValor = Asignacion(false,var);
                 
                 match(")");
                 if (Contenido == "{")
                 {
-                    bloqueInstrucciones(resultado);
+                    bloqueInstrucciones(resultado /&& !primeraVez/);
                 }
                 else
                 {
-                    Instruccion(resultado);
+                    Instruccion(resultado /&& !primeraVez/); //
                 }
+
+                
+
+                var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == var; });
+                v.setValor(nuevoValor);
 
                 if(resultado)
                 {
@@ -588,6 +563,7 @@ namespace Semantica
             }
             while(resultado);
         }
+
 
         //Console -> Console.(WriteLine|Write) (cadena?); | Console.(Read | ReadLine) ();
         private void console(bool ejecutar)
@@ -775,7 +751,10 @@ namespace Semantica
                 {
                     if (ejecutar)
                     {
-                        Console.Write(nuevoValor);
+                        if(esWrite)
+                            Console.Write(nuevoValor);
+                        else
+                            Console.WriteLine(nuevoValor);
                     }
                 }
                 return "";
@@ -858,7 +837,7 @@ namespace Semantica
         }
         
 
-        private void imprimeStack()
+        /*private void imprimeStack()
         {
             log.WriteLine("ESTO DICE QUE TIENE EL STACK");
             foreach (float e in S.Reverse())
@@ -866,7 +845,7 @@ namespace Semantica
                 log.Write(e + " ");
             }
             log.WriteLine();
-        }
+        }*/
         //Factor -> numero | identificador | (Expresion)
         private void Factor()
         {
