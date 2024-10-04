@@ -455,18 +455,38 @@ namespace Semantica
         //While -> while(Condicion) bloqueInstrucciones | instruccion
         private void While(bool ejecutar)
         {
-            match("while");
-            match("(");
-            Condicion();
-            match(")");
-            if (Contenido == "{")
-            {
-                bloqueInstrucciones(ejecutar);
-            }
-            else
-            {
-                Instruccion(ejecutar);
-            }
+            /*int cTemp = caracter - ?;
+            int lTemp = linea;
+            bool resultado = true;*/
+            //do
+            //{
+                match("while");
+                match("(");
+                //resultado = Condicion() && ejecutar;
+                Condicion();
+                /*if(!resultado)
+                {
+                    ejecutar = false;
+                }*/
+                match(")");
+                if (Contenido == "{")
+                {
+                    bloqueInstrucciones(ejecutar);
+                }
+                else
+                {
+                    Instruccion(ejecutar);
+                }
+
+                /*if(resultado)
+                {
+                    caracter = cTemp;
+                    linea = lTemp;
+                    archivo.DiscardBufferedData();
+                    archivo.BaseStream.Seek(cTemp, SeekOrigin.Begin);
+                    nextToken();
+                }*/
+            //} while (resultado);
         }
 
         //Do -> do bloqueInstrucciones | intruccion while(Condicion);
@@ -568,7 +588,6 @@ namespace Semantica
             }
             while(resultado);
         }
-
 
         //Console -> Console.(WriteLine|Write) (cadena?); | Console.(Read | ReadLine) ();
         private void console(bool ejecutar)
