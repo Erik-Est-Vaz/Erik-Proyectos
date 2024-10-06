@@ -116,10 +116,8 @@ namespace Semantica
 
         private void imprimeVariables()
         {
-            foreach (Variable v in listaVariables)
-            {
-                log.WriteLine(v.getNombre() + " (" + v.getTipo() + ") = " + v.getValor());
-            }
+            string variables = String.Join("\n", listaVariables.Select( v => $"{v.getNombre()} ({v.getTipo()}) = {v.getValor()}"));
+            log.WriteLine(variables);
         }
 
 
@@ -265,7 +263,14 @@ namespace Semantica
                     else
                     {
                         match("ReadLine");
-                        nuevoValor = float.Parse("" + Console.ReadLine());
+                        try
+                        {
+                            nuevoValor = float.Parse("" + Console.ReadLine());
+                        }
+                        catch
+                        {
+                            throw new Error(" Semantico, Linea " + linea + ": no es un valor entero el de entrada", log);
+                        }
                         // 8
                     }
                     match("(");

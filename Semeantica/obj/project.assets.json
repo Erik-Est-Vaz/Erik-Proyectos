@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\anony\\.nuget\\packages\\": {}
+    "C:\\Users\\redki\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\anony\\Documents\\LYA II\\Erik-Proyectos\\Semeantica\\Semeantica.csproj",
+      "projectUniqueName": "C:\\Users\\redki\\OneDrive\\Documentos\\Proyectos\\Erik-Proyectos\\Semeantica\\Semeantica.csproj",
       "projectName": "Semeantica",
-      "projectPath": "C:\\Users\\anony\\Documents\\LYA II\\Erik-Proyectos\\Semeantica\\Semeantica.csproj",
-      "packagesPath": "C:\\Users\\anony\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\anony\\Documents\\LYA II\\Erik-Proyectos\\Semeantica\\obj\\",
+      "projectPath": "C:\\Users\\redki\\OneDrive\\Documentos\\Proyectos\\Erik-Proyectos\\Semeantica\\Semeantica.csproj",
+      "packagesPath": "C:\\Users\\redki\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\redki\\OneDrive\\Documentos\\Proyectos\\Erik-Proyectos\\Semeantica\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\anony\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\redki\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -28,7 +28,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -41,11 +40,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -67,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

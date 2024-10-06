@@ -2,4 +2,5 @@ Analizador Lexico
 Analisis Semantico
 x (Char) = 12
 b (Char) = 34
+altura (Int) = 4
 a (Int) = 2
