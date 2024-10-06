@@ -138,7 +138,7 @@ namespace Semantica
                 
             if (v != null)
             {
-                throw new Exception("Error Semantico: en " + linea +" Variable duplicada " + Contenido);
+                throw new Error(" Semantico, Linea " + linea + ": en " + linea +" Variable duplicada " + Contenido,log);
             }
             else
             {
@@ -240,7 +240,7 @@ namespace Semantica
             }
             else
             {
-                throw new Exception("Error " + linea + ", no se reconoce el comando: " + variable);
+                throw new Error(" Semantico, Linea " + linea + ": La variable " + variable + " no existe", log);
             }
             
 
@@ -320,7 +320,7 @@ namespace Semantica
             }
             else
             {
-                throw new Exception("Error " + linea + ", no se reconoce el comando: " + Contenido);
+                throw new Error(" Lexico, Linea " + linea + ", no se reconoce el comando: " + Contenido,log);
             }
             // match(";");
             if (analisisSemantico(v, nuevoValor))
@@ -618,6 +618,8 @@ namespace Semantica
         {
             
             string cadena = "";
+            string cadenaN="";
+            char comillas='"';
             bool esWrite = false;
 
             match("Console");
@@ -636,6 +638,10 @@ namespace Semantica
             {
                 
                 cadena = Contenido;
+                cadenaN=cadena.Replace(comillas.ToString(),"");
+                cadena=cadenaN;
+
+                
                 //Console.WriteLine("esto tiene contenido en cadena = Contenido: " + Contenido + "\n");
 
                 match(Tipos.Cadena);
@@ -643,7 +649,6 @@ namespace Semantica
                 {
                     if (ejecutar)
                     {
-
                         Console.Write(cadena);
                     }
                     listaConcatenacion(ejecutar,esWrite);
@@ -693,7 +698,7 @@ namespace Semantica
                 }
                 else
                 {
-                    throw new Error("Linea " + linea + " Semantico: La variable " + variable + " no existe", log);
+                    throw new Error(" Semantico, Linea " + linea + ": La variable " + variable + " no existe", log);
                 }
             }
             else
@@ -731,7 +736,9 @@ namespace Semantica
         string listaConcatenacion(bool ejecutar, bool esWrite)
         {
             match("+");
-
+            char comillas='"';
+            string CadenaN=Contenido;
+            Contenido=CadenaN.Replace(comillas.ToString(),"");
             if (Clasificacion == Tipos.Cadena)
             {
 
@@ -774,7 +781,7 @@ namespace Semantica
                 }
                 else
                 {
-                    throw new Error("Linea " + linea + " Semantico: La variable " + variable + " no existe", log);
+                    throw new Error(" Semantico, Linea " + linea + ": La variable " + variable + " no existe", log);
                 }
                 return "";
             }
@@ -924,7 +931,7 @@ namespace Semantica
                 }
                 else
                 {
-                    throw new Error("Linea " + linea + " Semantico: La variable " + variable + " no existe", log);
+                    throw new Error(" Semantico, Linea " + linea + ": La variable " + variable + " no existe", log);
                 }
                 
             }

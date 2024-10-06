@@ -1,3 +1,5 @@
 Analizador Lexico
 Analisis Semantico
+x (Char) = 12
+b (Char) = 34
 a (Int) = 3

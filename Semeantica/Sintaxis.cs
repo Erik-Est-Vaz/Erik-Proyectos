@@ -23,7 +23,7 @@ namespace Semantica
             }
             else
             {
-                throw new Error("Error Sintaxis: en " + linea +"  se espera un " + espera + " (" + Contenido + ")",log);
+                throw new Error(" Sintaxis: en " + linea +"  se espera un " + espera + " (" + Contenido + ")",log);
             }
         }
         public void match(Tipos espera)
@@ -34,7 +34,7 @@ namespace Semantica
             }
             else
             {
-                throw new Error("Error Sintaxis: en " + linea +" se espera un "+espera+" ("+Contenido+")",log);
+                throw new Error(" Sintaxis: en " + linea +" se espera un "+espera+" ("+Contenido+")",log);
             }
         }
     }

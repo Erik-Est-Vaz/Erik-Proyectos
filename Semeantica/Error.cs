@@ -8,7 +8,7 @@ namespace Semantica
     //Requerimiento: Número de linea donde se encuentra el error
     public class Error : Exception
     {
-        public Error(string mensaje, StreamWriter log) : base("Error: " + mensaje)
+        public Error(string mensaje, StreamWriter log) : base("\nError: " + mensaje)
         {
             log.WriteLine("Error:" + mensaje);
         }
