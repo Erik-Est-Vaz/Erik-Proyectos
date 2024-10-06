@@ -450,21 +450,20 @@ namespace Semantica
             int cTemp = caracter - 6;
             int lTemp = linea;
             bool resultado = true;
-            //Lo ejecuta 1 vez mas de lo que deberia
             do
             {
                 match("while");
                 match("(");
-                resultado = Condicion() && ejecutar;
+                resultado = Condicion();
                 //Condicion();
                 match(")");
                 if (Contenido == "{")
                 {
-                    bloqueInstrucciones(ejecutar);
+                    bloqueInstrucciones(resultado);
                 }
                 else
                 {
-                    Instruccion(ejecutar);
+                    Instruccion(resultado);
                 }
                 
                 if(resultado)
@@ -475,38 +474,7 @@ namespace Semantica
                     archivo.BaseStream.Seek(cTemp, SeekOrigin.Begin);
                     nextToken();
                 }
-                
             }while(resultado);
-
-            //Lo ejecuta las veces que son pero no finaliza el programa
-            /*
-            match("while");
-            match("(");
-            resultado = Condicion() && ejecutar;
-            //Condicion();
-            match(")");
-            while(resultado)
-            {
-                if (Contenido == "{")
-                {
-                    bloqueInstrucciones(ejecutar);
-                }
-                else
-                {
-                    Instruccion(ejecutar);
-                }
-
-                if(resultado)
-                {
-                    caracter = cTemp;
-                    linea = lTemp;
-                    archivo.DiscardBufferedData();
-                    archivo.BaseStream.Seek(cTemp, SeekOrigin.Begin);
-                    nextToken();
-                }
-                
-            }
-            */
         }
 
         //Do -> do bloqueInstrucciones | intruccion while(Condicion);
