@@ -1,17 +1,56 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 static void Main(string[] args)
 {
-    char x = 12;
-    char b = 34;
-    int altura;
-    /*Console.WriteLine(" ");
-    Console.Write("x: " + x);
-    Console.Write(" a: " + a);*/
-    Console.Write(" HOLAAA!!!,"+" a + x  ="  + (b+x)+" "+b);
-    altura=Console.ReadLine();
-    int a = 0;
-    while(a < 2)
+    int altura,i,j;
+    float x=0, y=10, z=2;
+
+    x = (3 + 5) * 8 - (10 - 4) / 2; // = 61
+    x--;
+    x+=40;
+    x*=2;
+    x/=(y-6);
+    Console.WriteLine("Valor de altura = ");
+    altura = Console.ReadLine();
+
+    for (i = 1; i<=altura; i++)
     {
-        Console.WriteLine(a);
-        a++;
+        for (j = 1; j<=i; j++)
+        {
+            if (j%2==0)
+                Console.Write("*");
+            else
+                Console.Write("-");
+        }
+        Console.WriteLine("");
     }
+    i = 0;
+    do
+    {
+        Console.Write("-");
+        i++;
+    }
+    while (i<altura*2);
+    Console.WriteLine("");
+    for (i = 1; i<=altura; i++)
+    {
+        j = 1;
+        while (j<=i)
+        { 
+            Console.Write(""+j);
+            j++;
+        }
+        Console.WriteLine("");
+    }
+    i = 0;
+    do
+    {
+        Console.Write("-");
+        i++;
+    }
+    while (i<altura*2);
+    Console.WriteLine("");
 }

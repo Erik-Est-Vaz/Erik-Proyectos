@@ -1,6 +1,3 @@
 Analizador Lexico
 Analisis Semantico
-x (Char) = 12
-b (Char) = 34
-altura (Int) = 4
-a (Int) = 2
+Error: Semantico, Linea 9: no puedo asignar un Char a un Float

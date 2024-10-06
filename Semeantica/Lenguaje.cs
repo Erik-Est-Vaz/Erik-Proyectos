@@ -116,8 +116,8 @@ namespace Semantica
 
         private void imprimeVariables()
         {
-            string variables = String.Join("\n", listaVariables.Select( v => $"{v.getNombre()} ({v.getTipo()}) = {v.getValor()}"));
-            log.WriteLine(variables);
+            string Imprimirvars = String.Join("\n", listaVariables.Select( v => $"{v.getNombre()} ({v.getTipo()}) = {v.getValor()}"));
+            log.WriteLine(Imprimirvars);
         }
 
 
@@ -339,7 +339,7 @@ namespace Semantica
             else
             {
                 //Modificar tipoDatoExpresion
-                throw new Error("Semantico, no puedo asignar un " + tipoDatoExpresion +
+                throw new Error(" Semantico, Linea " + linea + ": no puedo asignar un " + tipoDatoExpresion +
                                 " a un " + v.getTipo(), log);
             }
 

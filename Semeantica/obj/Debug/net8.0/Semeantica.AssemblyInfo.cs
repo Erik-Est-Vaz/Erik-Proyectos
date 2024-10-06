@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Semeantica")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e71485fa7f73d279c1874b164343a78ab11f5674")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a8455942011caa0d88d009ee638e1fcde4f9cad")]
 [assembly: System.Reflection.AssemblyProductAttribute("Semeantica")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Semeantica")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
