@@ -215,7 +215,7 @@ namespace Semantica
             }
             else/* (Clasificacion == Tipos.Identificador)*/
             {
-                Console.WriteLine("Estoy en identificador");
+                //Console.WriteLine("Estoy en identificador");
                 string var = Contenido;
                 match(Tipos.Identificador);
                 Asignacion(ejecutar, var);
@@ -450,7 +450,36 @@ namespace Semantica
             int cTemp = caracter - 6;
             int lTemp = linea;
             bool resultado = true;
-            
+            //Lo ejecuta 1 vez mas de lo que deberia
+            do
+            {
+                match("while");
+                match("(");
+                resultado = Condicion() && ejecutar;
+                //Condicion();
+                match(")");
+                if (Contenido == "{")
+                {
+                    bloqueInstrucciones(ejecutar);
+                }
+                else
+                {
+                    Instruccion(ejecutar);
+                }
+                
+                if(resultado)
+                {
+                    caracter = cTemp;
+                    linea = lTemp;
+                    archivo.DiscardBufferedData();
+                    archivo.BaseStream.Seek(cTemp, SeekOrigin.Begin);
+                    nextToken();
+                }
+                
+            }while(resultado);
+
+            //Lo ejecuta las veces que son pero no finaliza el programa
+            /*
             match("while");
             match("(");
             resultado = Condicion() && ejecutar;
@@ -477,6 +506,7 @@ namespace Semantica
                 }
                 
             }
+            */
         }
 
         //Do -> do bloqueInstrucciones | intruccion while(Condicion);

@@ -7,13 +7,9 @@ static void Main(string[] args)
     Console.Write(" a: " + a);
     Console.Write(" HOLAAA!!!, a + x = " + (a+x));*/
     int a = 0;
-    while(a<2)
+    while(a < 2)
     {
         Console.WriteLine(a);
         a++;
-    }
-    for(int i=0; i<2; i++)
-    {
-        Console.WriteLine(i);
     }
 }
