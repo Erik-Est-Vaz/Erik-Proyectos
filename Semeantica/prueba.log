@@ -1,3 +1,10 @@
 Analizador Lexico
 Analisis Semantico
-Error: Semantico, Linea 9: no puedo asignar un Char a un Float
+altura (Int) = 1
+i (Int) = 2
+j (Int) = 3
+y (Float) = 10
+z (Float) = 2
+c (Char) = 44
+x (Float) = 72
+k (Int) = 3

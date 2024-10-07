@@ -144,16 +144,29 @@ namespace Semantica
 
                 string var = Contenido;
 
-                match(Tipos.Identificador);
-                if(Contenido != "," && Contenido != ";")
+                if(Contenido != ";")
                 {
-                    Asignacion(ejecutar,var);
+                    match(Tipos.Identificador);
+                    if(Contenido != "," && Contenido != ";")
+                    {
+                        Asignacion(ejecutar,var);
+                        if(Contenido == ",")
+                        {
+                            match(",");
+                            listaIdentificadores(t,true);
+                        }
+                        else if(Contenido == ";")
+                        {
+
+                        }
+                    }
+                    else if(Contenido == ",")
+                    {
+                        match(",");
+                        listaIdentificadores(t,true);
+                    }
                 }
-                else if(Contenido == ",")
-                {
-                    match(",");
-                    listaIdentificadores(t,true);
-                }
+                
             }
             
         }
@@ -388,7 +401,7 @@ namespace Semantica
                     if (valor <= 65535)
                         return true;
                 }
-                return false;
+                return true;
             }
             else
             {
@@ -538,11 +551,12 @@ namespace Semantica
                 {
                     var = Variables(resultado && ejecutar);
                 }
-                else /*if (Clasificacion == Tipos.Identificador)*/
+                else if (Clasificacion == Tipos.Identificador)
                 {
                     var = Contenido;
+                    //Console.WriteLine(var);
                     match(Tipos.Identificador);
-                    Asignacion(resultado && ejecutar, Contenido);
+                    Asignacion(resultado && ejecutar, var);
                 }
 
                 ejecutar = false;
