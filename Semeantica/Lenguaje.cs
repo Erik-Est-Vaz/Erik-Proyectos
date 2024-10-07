@@ -472,7 +472,7 @@ namespace Semantica
             {
                 match("while");
                 match("(");
-                resultado = Condicion();
+                resultado = Condicion() && ejecutar;
                 //Condicion();
                 match(")");
                 if (Contenido == "{")

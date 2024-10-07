@@ -1,10 +1,10 @@
 Analizador Lexico
 Analisis Semantico
-altura (Int) = 1
-i (Int) = 2
-j (Int) = 3
+altura (Int) = 5
+i (Int) = 10
+j (Int) = 6
 y (Float) = 10
 z (Float) = 2
 c (Char) = 44
-x (Float) = 72
-k (Int) = 3
+x (Float) = 200
+k (Int) = 7
