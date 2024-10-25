@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 /*
 
-    1. Usar find en lugar del for each :)
+    1. Usar find en lugar del for each :)wfewfwe
     2. Valiar que no existan varibles duplicadas ;)
     3. Validar que existan las variables en las expressions matematicas :)
        Asignacion
     4. Asinar una expresion matematica a la variable al momento de declararla :)
-       verificando la semantica
+       verificando la semanticawefewfwefwef
     5. Validar que en el ReadLine se capturen solo numeros (Excepcion)
     6. listaConcatenacion: 30, 14, 15 ,12, 0
     7. Quitar comillas y considerar el Write
