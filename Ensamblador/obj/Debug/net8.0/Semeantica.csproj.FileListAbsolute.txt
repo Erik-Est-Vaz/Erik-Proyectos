@@ -1,0 +1,104 @@
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.AssemblyInfoInputs.cache
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.AssemblyInfo.cs
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.csproj.CoreCompileInputs.cache
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.sourcelink.json
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.exe
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.deps.json
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.runtimeconfig.json
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.dll
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.pdb
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.dll
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\refint\Semeantica.dll
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.pdb
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.genruntimeconfig.cache
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\ref\Semeantica.dll
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.AssemblyInfoInputs.cache
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.AssemblyInfo.cs
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.csproj.CoreCompileInputs.cache
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.sourcelink.json
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.dll
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Semeantica\obj\Debug\net8.0\refint\Semeantica.dll
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.pdb
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.exe
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.deps.json
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.runtimeconfig.json
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.dll
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.pdb
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.genruntimeconfig.cache
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Semeantica\obj\Debug\net8.0\ref\Semeantica.dll
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\bin\Debug\net8.0\Semeantica.exe
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\bin\Debug\net8.0\Semeantica.deps.json
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\bin\Debug\net8.0\Semeantica.runtimeconfig.json
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\bin\Debug\net8.0\Semeantica.dll
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\bin\Debug\net8.0\Semeantica.pdb
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.AssemblyInfoInputs.cache
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.AssemblyInfo.cs
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.csproj.CoreCompileInputs.cache
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.sourcelink.json
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.dll
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\refint\Semeantica.dll
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.pdb
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.genruntimeconfig.cache
+C:\Users\redki\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\ref\Semeantica.dll
+C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\bin\Debug\net8.0\Semeantica.exe
+C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\bin\Debug\net8.0\Semeantica.deps.json
+C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\bin\Debug\net8.0\Semeantica.runtimeconfig.json
+C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\bin\Debug\net8.0\Semeantica.dll
+C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\bin\Debug\net8.0\Semeantica.pdb
+C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.AssemblyInfoInputs.cache
+C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.AssemblyInfo.cs
+C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.csproj.CoreCompileInputs.cache
+C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.sourcelink.json
+C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.dll
+C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\refint\Semeantica.dll
+C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.pdb
+C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.genruntimeconfig.cache
+C:\Users\Mauricio\OneDrive\Documentos\Proyectos\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\ref\Semeantica.dll
+C:\Proyectos\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.exe
+C:\Proyectos\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.deps.json
+C:\Proyectos\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.runtimeconfig.json
+C:\Proyectos\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.dll
+C:\Proyectos\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.pdb
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.GeneratedMSBuildEditorConfig.editorconfig
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.AssemblyInfoInputs.cache
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.AssemblyInfo.cs
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.csproj.CoreCompileInputs.cache
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.dll
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\refint\Semeantica.dll
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.pdb
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.genruntimeconfig.cache
+C:\Proyectos\Erik-Proyectos\Semeantica\obj\Debug\net8.0\ref\Semeantica.dll
+C:\Users\flaki\Documents\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\flaki\Documents\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.AssemblyInfoInputs.cache
+C:\Users\flaki\Documents\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.AssemblyInfo.cs
+C:\Users\flaki\Documents\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.csproj.CoreCompileInputs.cache
+C:\Users\flaki\Documents\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.sourcelink.json
+C:\Users\flaki\Documents\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.dll
+C:\Users\flaki\Documents\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\refint\Semeantica.dll
+C:\Users\flaki\Documents\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.pdb
+C:\Users\flaki\Documents\Erik-Proyectos-1\Semeantica\bin\Debug\net8.0\Semeantica.exe
+C:\Users\flaki\Documents\Erik-Proyectos-1\Semeantica\bin\Debug\net8.0\Semeantica.deps.json
+C:\Users\flaki\Documents\Erik-Proyectos-1\Semeantica\bin\Debug\net8.0\Semeantica.runtimeconfig.json
+C:\Users\flaki\Documents\Erik-Proyectos-1\Semeantica\bin\Debug\net8.0\Semeantica.dll
+C:\Users\flaki\Documents\Erik-Proyectos-1\Semeantica\bin\Debug\net8.0\Semeantica.pdb
+C:\Users\flaki\Documents\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\Semeantica.genruntimeconfig.cache
+C:\Users\flaki\Documents\Erik-Proyectos-1\Semeantica\obj\Debug\net8.0\ref\Semeantica.dll
+C:\Users\flaki\Documents\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.exe
+C:\Users\flaki\Documents\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.deps.json
+C:\Users\flaki\Documents\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.runtimeconfig.json
+C:\Users\flaki\Documents\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.dll
+C:\Users\flaki\Documents\Erik-Proyectos\Semeantica\bin\Debug\net8.0\Semeantica.pdb
+C:\Users\flaki\Documents\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\flaki\Documents\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.AssemblyInfoInputs.cache
+C:\Users\flaki\Documents\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.AssemblyInfo.cs
+C:\Users\flaki\Documents\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.csproj.CoreCompileInputs.cache
+C:\Users\flaki\Documents\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.sourcelink.json
+C:\Users\flaki\Documents\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.dll
+C:\Users\flaki\Documents\Erik-Proyectos\Semeantica\obj\Debug\net8.0\refint\Semeantica.dll
+C:\Users\flaki\Documents\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.pdb
+C:\Users\flaki\Documents\Erik-Proyectos\Semeantica\obj\Debug\net8.0\Semeantica.genruntimeconfig.cache
+C:\Users\flaki\Documents\Erik-Proyectos\Semeantica\obj\Debug\net8.0\ref\Semeantica.dll
