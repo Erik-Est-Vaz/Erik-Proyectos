@@ -653,15 +653,23 @@ namespace Semantica
         }
 
 
-        //For -> for(Asignacion Condicion; Incremento) BloqueInstrucciones | Intruccion
+       //For -> for(Asignacion Condicion; Incremento) BloqueInstrucciones | Intruccion
         private void For()
         {
-
-            int cTemp = caracter - 4;
             int lTemp = linea;
-            bool resultado = true;
+            bool resultado = false;
             string var;
             float nuevoValor;
+
+            asm.WriteLine("; for" + cFors);
+            string etiqueta = "_for" + cFors;
+            string etiquetaEnd = "_forEnd" + cFors;
+            string etiquetaAsig = "_forAsig" + cFors;
+            string etiquetaAsigEnd = "_forAsigEnd" + cFors;
+            cFors++;
+            bool esDO = false;
+            //asm.WriteLine(etiqueta + ":");
+
             do
             {
                 match("for");
@@ -671,27 +679,34 @@ namespace Semantica
 
                 if (Clasificacion == Tipos.TipoDato)
                 {
-                    var = Variables(resultado);
+                    var = Variables();
                 }
                 else if (Clasificacion == Tipos.Identificador)
                 {
                     var = Contenido;
-                    //Console.WriteLine(var);
                     match(Tipos.Identificador);
                     Asignacion(var);
                 }
 
-                //ejecutar = false;
+                match(";");
+
+                asm.WriteLine(etiqueta + ":");
+
+                Condicion(etiquetaEnd, esDO);
+
+                asm.WriteLine("\tjmp " + etiquetaAsigEnd);
 
                 match(";");
 
-                //resultado = Condicion();
-
-                match(";");
+                asm.WriteLine(etiquetaAsig + ":");
 
                 var = Contenido;
                 match(Tipos.Identificador);
                 nuevoValor = Asignacion(var);
+
+                asm.WriteLine("\tjmp " + etiqueta);
+
+                asm.WriteLine(etiquetaAsigEnd + ":");
 
                 match(")");
                 if (Contenido == "{")
@@ -700,26 +715,28 @@ namespace Semantica
                 }
                 else
                 {
-                    Instruccion(); //
+                    Instruccion();
                 }
 
-
-
-                var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == var; });
-                v.setValor(nuevoValor);
 
                 if (resultado)
                 {
-                    caracter = cTemp;
                     linea = lTemp;
                     archivo.DiscardBufferedData();
-                    archivo.BaseStream.Seek(cTemp, SeekOrigin.Begin);
                     nextToken();
                 }
 
+                asm.WriteLine("\tjmp " + etiquetaAsig);
+
             }
             while (resultado);
+
+            asm.WriteLine(etiquetaEnd + ":");
+
+            //asm.WriteLine("\tmov eax, [y]");
+            //asm.WriteLine("\tmov eax, [i]");
         }
+
 
 
         //Console -> Console.(WriteLine|Write) (cadena?); | Console.(Read | ReadLine) ();
