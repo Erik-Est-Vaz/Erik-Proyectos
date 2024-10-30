@@ -18,6 +18,7 @@ using System.Threading.Tasks;
     6. Programar el for
     7. Se feliz :) PENDIENTE
     8. Tomar en cuenta todas las condiciones LISTO
+    prueba de commit
 
 */
 
@@ -27,8 +28,6 @@ namespace Semantica
     {
         private List<Variable> listaVariables;
         //private Stack<float> S;
-
-        //Modificación 1
         private Variable.TipoDato tipoDatoExpresion;
         private int cIFs, cDOs, cWhiles, cFors;
 
