@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace Semantica
+namespace Semeantica
 {
     public class Variable
     {

@@ -10,10 +10,11 @@ static void Main(string[] args)
     char c;
 
     // c = (100+200);
-    c = (char) (100+200);
+    c = 100;
 
     Console.Write("Valor de altura = ");
     altura = Console.ReadLine();
+    Console.WriteLine("");
 
     float x = (3 + altura) * 8 - (10 - 4) / 2; // = 61
     x--;

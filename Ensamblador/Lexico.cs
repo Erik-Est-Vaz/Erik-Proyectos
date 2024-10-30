@@ -4,14 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace Semantica
+namespace Semeantica
 {
     public class Lexico : Token, IDisposable
     {
         protected StreamReader archivo;
         public StreamWriter log;
         protected StreamWriter asm;
-        protected int linea, caracter;
+        protected int linea;
         const int F = -1;
         const int E = -2;
         int[,] TRAND =
@@ -61,6 +61,17 @@ namespace Semantica
             log.WriteLine("Analizador Lexico");
             asm.WriteLine(";Autor: Erik, Brayan y Mauricio");
             asm.WriteLine(";Analizador Lexico");
+            
+
+            if (Path.GetExtension(nombre) != ".cpp")
+            {
+                throw new Error("El archivo " + nombre + " no tiene extension CPP", log);
+            }
+            if (!File.Exists(nombre))
+            {
+                throw new Error("El archivo " + nombre + " no existe", log);
+            }
+            archivo = new StreamReader(nombre);
         }
         public void Dispose() // Destructor
         {
@@ -224,7 +235,6 @@ namespace Semantica
                     {
                         linea++;
                     }
-                    caracter++;
                     archivo.Read();
                 }
             }

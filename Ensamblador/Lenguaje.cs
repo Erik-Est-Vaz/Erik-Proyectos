@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 /*
 
-    El código analiza un archivo en c++ y genera código en ensamblador en MASM, NASM, etc... ¡Excepto EMU 8086! 
-    
+    El código analiza un archivo en c++ y genera código en ensamblador en MASM, NASM, etc... ¡Excepto EMU 8086!
 
     1. Completar la asignación ++, +=, -=, etc LISTO
-    2. Console.Write y Console.WriteLine
-    3. Console.Read y Console.ReadLine
-    4. Considerar el else en el if LSITO
+    2. Console.Write y Console.WriteLine LSITO
+    3. Console.Read y Console.ReadLine LSITO
+    4. Considerar el else en el if LISTO
     5. Programar el while LISTO
     6. Programar el for LISTO
     7. Se feliz :) PENDIENTE
@@ -21,12 +20,11 @@ using System.Threading.Tasks;
 
 */
 
-namespace Semantica
+namespace Semeantica
 {
     public class Lenguaje : Sintaxis
     {
         private List<Variable> listaVariables;
-        //private Stack<float> S;
         private Variable.TipoDato tipoDatoExpresion;
         private int cIFs, cDOs, cWhiles, cFors, cMsgs;
 
@@ -107,14 +105,12 @@ namespace Semantica
         //Variables -> tipo_dato Lista_identificadores; Variables?
         private string Variables()
         {
-            //listaVariables.Add(new Variable("efnhjesflo4hesf", Variable.TipoDato.Char));
             Variable.TipoDato tipo = getTipo(Contenido);
             match(Tipos.TipoDato);
 
             string var = Contenido;
 
             listaIdentificadores(tipo);
-            //match(";");
             return var;
 
         }
@@ -139,7 +135,15 @@ namespace Semantica
                 }
             }
 
-            
+            asm.WriteLine("\tvacio db  \"\", 0");
+            asm.WriteLine("\tvaciowl db  \"\", 13, 0");
+            asm.WriteLine("\tcaracter db  \"%c\", 0");
+            asm.WriteLine("\tcaracterwl db \"%c\", 13,0");
+            asm.WriteLine("\tentero db \"%d\", 0");
+            asm.WriteLine("\tenterowl db \"%d\", 13, 0");
+            asm.WriteLine("\tflotante db \"%f\", 0");
+            asm.WriteLine("\tflotantewl db \"%f\", 13, 0");
+
             foreach (Variable v in listaVariables)
             {
                 if (v.getTipo() == Variable.TipoDato.Char)
@@ -156,11 +160,9 @@ namespace Semantica
                     asm.WriteLine("\t" + v.getNombre() + " dq 0 ");
                 }
             }
+
         }
 
-
-
-        // -->  Aqui hay que hacer una modificación
         //ListaIdentificadores -> identificador (,ListaIdentificadores)?
         private void listaIdentificadores(Variable.TipoDato t)
         {
@@ -205,7 +207,6 @@ namespace Semantica
         }
 
 
-        //Modificación 3
         //BloqueInstrucciones -> { listaIntrucciones? }
         private void bloqueInstrucciones()
         {
@@ -217,7 +218,6 @@ namespace Semantica
             match("}");
         }
 
-        //Modificación 4
         //ListaInstrucciones -> Instruccion ListaInstrucciones?
         private void listaInstrucciones()
         {
@@ -228,7 +228,6 @@ namespace Semantica
             }
         }
 
-        //Modificación 5
         //Instruccion -> Console | If | While | do | For | Asignacion
         private void Instruccion()
         {
@@ -257,9 +256,8 @@ namespace Semantica
                 Variables();
                 match(";");
             }
-            else/* (Clasificacion == Tipos.Identificador)*/
+            else
             {
-                //Console.WriteLine("Estoy en identificador");
                 string var = Contenido;
                 match(Tipos.Identificador);
                 Asignacion(var);
@@ -268,7 +266,7 @@ namespace Semantica
         }
 
         //Modificación 6
-     // Asignacion -> Identificador = Expresion;
+        // Asignacion -> Identificador = Expresion;
         private float Asignacion(string variable)
         {
 
@@ -427,7 +425,7 @@ namespace Semantica
 
         private Variable.TipoDato valorToTipo(float valor)
         {
-            if (valor % 1 != 0)
+            if (valor % 1 != 0) //Aqui se verifica que no tenga punto decimal
             {
                 return Variable.TipoDato.Float;
             }
@@ -446,7 +444,6 @@ namespace Semantica
 
         bool analisisSemantico(Variable v, float valor)
         {
-            //Sigue marcando error
             if (tipoDatoExpresion > v.getTipo())
             {
                 return false;
@@ -658,8 +655,7 @@ namespace Semantica
 
         }
 
-
-       //For -> for(Asignacion Condicion; Incremento) BloqueInstrucciones | Intruccion
+        //For -> for(Asignacion Condicion; Incremento) BloqueInstrucciones | Intruccion
         private void For()
         {
             int lTemp = linea;
@@ -742,7 +738,6 @@ namespace Semantica
             //asm.WriteLine("\tmov eax, [y]");
             //asm.WriteLine("\tmov eax, [i]");
         }
-
 
 
         //Console -> Console.(WriteLine|Write) (cadena?); | Console.(Read | ReadLine) ();
@@ -931,7 +926,6 @@ namespace Semantica
                 match("(");
                 Expresion();
                 match(")");
-                asm.WriteLine("\tpop ");
                 if (Contenido == "+")
                 {
                     Console.Write("");
@@ -1158,7 +1152,6 @@ namespace Semantica
                 match("(");
                 Expresion();
                 match(")");
-                asm.WriteLine("\tpop ");
                 if (Contenido == "+")
                 {
                     if (esWrite)
@@ -1220,6 +1213,8 @@ namespace Semantica
 
 
         }
+
+
         private void asm_Main()
         {
             asm.WriteLine();
@@ -1227,6 +1222,8 @@ namespace Semantica
             asm.WriteLine("extern printf");
             asm.WriteLine("extern scanf");
             asm.WriteLine("extern stdout");
+            asm.WriteLine("\nsection .bss");
+            asm.WriteLine("\tscanner resd 1");
             asm.WriteLine("\nsegment .text");
             asm.WriteLine("\tglobal main");
             asm.WriteLine("\nmain:");
@@ -1266,7 +1263,7 @@ namespace Semantica
         }
 
 
-         //MasTermino -> (OperadorTermino Termino)?
+        //MasTermino -> (OperadorTermino Termino)?
         private void MasTermino()
         {
             if (Clasificacion == Tipos.OpTermino)
@@ -1330,7 +1327,6 @@ namespace Semantica
 
             }
         }
-
 
         //Factor -> numero | identificador | (Expresion)
         private void Factor()
