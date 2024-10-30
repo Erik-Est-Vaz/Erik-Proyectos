@@ -576,15 +576,21 @@ namespace Semantica
         //While -> while(Condicion) bloqueInstrucciones | instruccion
         private void While()
         {
-            int cTemp = caracter - 6;
             int lTemp = linea;
-            bool resultado = true;
+            bool resultado = false;
+
+            asm.WriteLine("; while" + cWhiles);
+            string etiqueta = "_while" + cWhiles;
+            string etiquetaEnd = "_whileEnd" + cWhiles;
+            cWhiles++;
+            bool esDO = false;
+            asm.WriteLine(etiqueta + ":");
+
             do
             {
                 match("while");
                 match("(");
-                //resultado = Condicion("",false);
-                //Condicion();
+                Condicion(etiquetaEnd, esDO);
                 match(")");
                 if (Contenido == "{")
                 {
@@ -597,21 +603,27 @@ namespace Semantica
 
                 if (resultado)
                 {
-                    caracter = cTemp;
                     linea = lTemp;
                     archivo.DiscardBufferedData();
-                    archivo.BaseStream.Seek(cTemp, SeekOrigin.Begin);
                     nextToken();
                 }
+
+                asm.WriteLine("\tjmp " + etiqueta);
+
             } while (resultado);
+
+            asm.WriteLine(etiquetaEnd + ":");
         }
 
         //Do -> do bloqueInstrucciones | intruccion while(Condicion);
         private void Do()
         {
-            int cTemp = caracter - 3;
+            asm.WriteLine("; do" + cDOs);
+            string etiqueta = "_do" + cDOs++;
+            asm.WriteLine(etiqueta + ":");
             int lTemp = linea;
             bool resultado = false;
+            bool esDO = true;
 
             do
             {
@@ -626,21 +638,20 @@ namespace Semantica
                 }
                 match("while");
                 match("(");
-                //resultado = Condicion();
+                Condicion(etiqueta, esDO);
                 match(")");
                 match(";");
 
                 if (resultado)
                 {
-                    caracter = cTemp;
                     linea = lTemp;
                     archivo.DiscardBufferedData();
-                    archivo.BaseStream.Seek(cTemp, SeekOrigin.Begin);
                     nextToken();
                 }
             } while (resultado);
 
         }
+
 
         //For -> for(Asignacion Condicion; Incremento) BloqueInstrucciones | Intruccion
         private void For()
