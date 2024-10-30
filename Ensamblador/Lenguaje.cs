@@ -14,11 +14,10 @@ using System.Threading.Tasks;
     2. Console.Write y Console.WriteLine
     3. Console.Read y Console.ReadLine
     4. Considerar el else en el if LSITO
-    5. Programar el while
-    6. Programar el for
+    5. Programar el while LISTO
+    6. Programar el for LISTO
     7. Se feliz :) PENDIENTE
     8. Tomar en cuenta todas las condiciones LISTO
-    prueba de commit
 
 */
 
@@ -29,7 +28,7 @@ namespace Semantica
         private List<Variable> listaVariables;
         //private Stack<float> S;
         private Variable.TipoDato tipoDatoExpresion;
-        private int cIFs, cDOs, cWhiles, cFors;
+        private int cIFs, cDOs, cWhiles, cFors, cMsgs;
 
         public Lenguaje()
         {
@@ -40,19 +39,19 @@ namespace Semantica
             cDOs = 1;
             cWhiles = 1;
             cFors = 1;
+            cMsgs = 1;
         }
 
 
         public Lenguaje(string nombre) : base(nombre)
         {
-            //Modificación 2.1
             log.WriteLine("Analisis Semantico");
-            asm.WriteLine("Analisis Semantico");
             listaVariables = new List<Variable>();
             cIFs = 1;
             cDOs = 1;
             cWhiles = 1;
             cFors = 1;
+            cMsgs = 1;
         }
 
 
@@ -106,7 +105,7 @@ namespace Semantica
 
 
         //Variables -> tipo_dato Lista_identificadores; Variables?
-        private string Variables(bool ejecutar)
+        private string Variables()
         {
             //listaVariables.Add(new Variable("efnhjesflo4hesf", Variable.TipoDato.Char));
             Variable.TipoDato tipo = getTipo(Contenido);
@@ -255,7 +254,7 @@ namespace Semantica
             }
             else if (Clasificacion == Tipos.TipoDato)
             {
-                Variables(true);
+                Variables();
                 match(";");
             }
             else/* (Clasificacion == Tipos.Identificador)*/
@@ -747,6 +746,7 @@ namespace Semantica
             string cadenaN = "";
             char comillas = '"';
             bool esWrite = false;
+            string nombreMsg = "msg" + cMsgs++;
 
             match("Console");
             match(".");
@@ -764,32 +764,80 @@ namespace Semantica
             {
 
                 cadena = Contenido;
-                cadenaN = cadena.Replace(comillas.ToString(), "");
-                cadena = cadenaN;
-
-
-                //Console.WriteLine("esto tiene contenido en cadena = Contenido: " + Contenido + "\n");
+                /*cadenaN = cadena.Replace(comillas.ToString(),"");
+                cadena  = cadenaN;*/
 
                 match(Tipos.Cadena);
                 if (Contenido == "+")
                 {
                     Console.Write(cadena);
+
+                    listaVariables.Add(new Variable(nombreMsg, Variable.TipoDato.Char));
+
+                    var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == nombreMsg; });
+
+                    v.setSmg(cadena);
+                    v.setEsWrite(true);
+
+                    asm.WriteLine("\tpush ebp");
+                    asm.WriteLine("\tmov ebp, esp");
+                    asm.WriteLine("\tpush " + nombreMsg);
+
+                    asm.WriteLine("\tcall printf");
+                    asm.WriteLine("\tmov esp, ebp");
+                    asm.WriteLine("\tpop ebp");
+
                     listaConcatenacion(esWrite);
                 }
                 else
                 {
                     if (!esWrite)
+                    {
                         Console.WriteLine(cadena);
+
+                        listaVariables.Add(new Variable(nombreMsg, Variable.TipoDato.Char));
+
+                        var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == nombreMsg; });
+
+                        v.setSmg(cadena);
+                        v.setEsWrite(false);
+
+                        asm.WriteLine("\tpush ebp");
+                        asm.WriteLine("\tmov ebp, esp");
+                        asm.WriteLine("\tpush " + nombreMsg);
+
+                        asm.WriteLine("\tcall printf");
+
+                        asm.WriteLine("\tmov esp, ebp");
+                        asm.WriteLine("\tpop ebp");
+
+
+                    }
                     else
+                    {
                         Console.Write(cadena);
 
+                        listaVariables.Add(new Variable(nombreMsg, Variable.TipoDato.Char));
+
+                        var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == nombreMsg; });
+
+                        v.setSmg(cadena);
+                        v.setEsWrite(true);
+
+                        asm.WriteLine("\tpush ebp");
+                        asm.WriteLine("\tmov ebp, esp");
+                        asm.WriteLine("\tpush " + nombreMsg);
+
+                        asm.WriteLine("\tcall printf");
+                        asm.WriteLine("\tmov esp, ebp");
+                        asm.WriteLine("\tpop ebp");
+                    }
                 }
             }
             else if (Clasificacion == Tipos.Identificador)
             {
 
                 string variable = Contenido;
-
                 var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == Contenido; });
 
                 if (v != null)
@@ -800,14 +848,69 @@ namespace Semantica
                     {
                         Console.Write(v.getValor());
 
+                        asm.WriteLine("\tpush dword [" + v.getNombre() + "]");
+                        switch (v.getTipo())
+                        {
+                            case Variable.TipoDato.Char:
+                                asm.WriteLine("\tpush caracter");
+                                break;
+                            case Variable.TipoDato.Int:
+                                asm.WriteLine("\tpush entero");
+                                break;
+                            case Variable.TipoDato.Float:
+                                asm.WriteLine("\tpush floatante");
+                                break;
+
+                        }
+                        asm.WriteLine("\tcall printf");
+                        asm.WriteLine("\tadd esp, 8");
+
                         listaConcatenacion(esWrite);
                     }
                     else
                     {
                         if (!esWrite)
+                        {
                             Console.WriteLine(v.getValor());
+
+                            asm.WriteLine("\tpush dword [" + v.getNombre() + "]");
+                            switch (v.getTipo())
+                            {
+                                case Variable.TipoDato.Char:
+                                    asm.WriteLine("\tpush caracterwl");
+                                    break;
+                                case Variable.TipoDato.Int:
+                                    asm.WriteLine("\tpush enterowl");
+                                    break;
+                                case Variable.TipoDato.Float:
+                                    asm.WriteLine("\tpush floatantewl");
+                                    break;
+
+                            }
+                            asm.WriteLine("\tcall printf");
+                            asm.WriteLine("\tadd esp, 8");
+                        }
                         else
+                        {
                             Console.Write(v.getValor());
+
+                            asm.WriteLine("\tpush dword [" + v.getNombre() + "]");
+                            switch (v.getTipo())
+                            {
+                                case Variable.TipoDato.Char:
+                                    asm.WriteLine("\tpush caracter");
+                                    break;
+                                case Variable.TipoDato.Int:
+                                    asm.WriteLine("\tpush entero");
+                                    break;
+                                case Variable.TipoDato.Float:
+                                    asm.WriteLine("\tpush floatante");
+                                    break;
+
+                            }
+                            asm.WriteLine("\tcall printf");
+                            asm.WriteLine("\tadd esp, 8");
+                        }
 
                     }
                 }
@@ -821,24 +924,53 @@ namespace Semantica
                 match("(");
                 Expresion();
                 match(")");
-                //float nuevoValor = S.Pop();
+                asm.WriteLine("\tpop ");
                 if (Contenido == "+")
                 {
                     Console.Write("");
+
+                    listaVariables.Add(new Variable(nombreMsg, Variable.TipoDato.Char));
+                    var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == nombreMsg; });
+                    v.setSmg("");
+
+                    asm.WriteLine("\tpush ebp");
+                    asm.WriteLine("\tmov ebp, esp");
+                    asm.WriteLine("\tpush vacio");
+
+                    asm.WriteLine("\tcall printf");
+                    asm.WriteLine("\tmov esp, ebp");
+                    asm.WriteLine("\tpop ebp");
 
                     listaConcatenacion(esWrite);
                 }
                 else
                 {
-                    if (!esWrite)
-                        Console.WriteLine("");
-                    else
+                    if (esWrite)
+                    {
                         Console.Write("");
 
-                }
+                        asm.WriteLine("\tpush ebp");
+                        asm.WriteLine("\tmov ebp, esp");
+                        asm.WriteLine("\tpush vacio");
 
+                        asm.WriteLine("\tcall printf");
+                        asm.WriteLine("\tmov esp, ebp");
+                        asm.WriteLine("\tpop ebp");
+                    }
+                    else
+                    {
+                        Console.WriteLine("");
+
+                        asm.WriteLine("\tpush ebp");
+                        asm.WriteLine("\tmov ebp, esp");
+                        asm.WriteLine("\tpush vaciowl");
+
+                        asm.WriteLine("\tcall printf");
+                        asm.WriteLine("\tmov esp, ebp");
+                        asm.WriteLine("\tpop ebp");
+                    }
+                }
             }
-            //Console.WriteLine("esto tiene contenido  match()): " + Contenido + "\n");
             match(")");
             match(";");
         }
@@ -850,13 +982,53 @@ namespace Semantica
             char comillas = '"';
             string CadenaN = Contenido;
             Contenido = CadenaN.Replace(comillas.ToString(), "");
+
+            string nombreMsg = "msg" + cMsgs++;
+
             if (Clasificacion == Tipos.Cadena)
             {
 
+                /*
                 if (esWrite)
                     Console.Write(Contenido);
                 else
                     Console.WriteLine(Contenido);
+                */
+                if (esWrite)
+                {
+                    Console.Write(Contenido);
+
+                    listaVariables.Add(new Variable(nombreMsg, Variable.TipoDato.Char));
+                    var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == nombreMsg; });
+                    v.setSmg(Contenido);
+                    v.setEsWrite(true);
+
+                    asm.WriteLine("\tpush ebp");
+                    asm.WriteLine("\tmov ebp, esp");
+                    asm.WriteLine("\tpush " + nombreMsg);
+
+                    asm.WriteLine("\tcall printf");
+                    asm.WriteLine("\tmov esp, ebp");
+                    asm.WriteLine("\tpop ebp");
+
+                }
+                else
+                {
+                    Console.WriteLine(Contenido);
+
+                    listaVariables.Add(new Variable(nombreMsg, Variable.TipoDato.Char));
+                    var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == nombreMsg; });
+                    v.setSmg(Contenido);
+                    v.setEsWrite(false);
+
+                    asm.WriteLine("\tpush ebp");
+                    asm.WriteLine("\tmov ebp, esp");
+                    asm.WriteLine("\tpush " + nombreMsg);
+
+                    asm.WriteLine("\tcall printf");
+                    asm.WriteLine("\tmov esp, ebp");
+                    asm.WriteLine("\tpop ebp");
+                }
 
                 match(Tipos.Cadena);
                 if (Contenido == "+")
@@ -868,7 +1040,7 @@ namespace Semantica
             else if (Clasificacion == Tipos.Identificador)
             {
 
-                string variable = Contenido;
+                /*string variable = Contenido;
 
                 var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == Contenido; });
 
@@ -879,7 +1051,6 @@ namespace Semantica
                     else
                         Console.WriteLine(v.getValor());
 
-
                     match(Tipos.Identificador);
                     if (Contenido == "+")
                     {
@@ -889,39 +1060,159 @@ namespace Semantica
                 else
                 {
                     throw new Error(" Semantico, Linea " + linea + ": La variable " + variable + " no existe", log);
+                }*/
+
+                string variable = Contenido;
+                var v = listaVariables.Find(delegate (Variable x) { return x.getNombre() == Contenido; });
+
+                if (v != null)
+                {
+
+                    match(Tipos.Identificador);
+                    if (Contenido == "+")
+                    {
+                        Console.Write(v.getValor());
+
+                        asm.WriteLine("\tpush dword [" + v.getNombre() + "]");
+                        switch (v.getTipo())
+                        {
+                            case Variable.TipoDato.Char:
+                                asm.WriteLine("\tpush caracter");
+                                break;
+                            case Variable.TipoDato.Int:
+                                asm.WriteLine("\tpush entero");
+                                break;
+                            case Variable.TipoDato.Float:
+                                asm.WriteLine("\tpush flotante");
+                                break;
+
+                        }
+                        asm.WriteLine("\tcall printf");
+                        asm.WriteLine("\tadd esp, 8");
+
+                        listaConcatenacion(esWrite);
+                    }
+                    else
+                    {
+                        if (!esWrite)
+                        {
+                            Console.WriteLine(v.getValor());
+
+                            asm.WriteLine("\tpush dword [" + v.getNombre() + "]");
+                            switch (v.getTipo())
+                            {
+                                case Variable.TipoDato.Char:
+                                    asm.WriteLine("\tpush caracterwl");
+                                    break;
+                                case Variable.TipoDato.Int:
+                                    asm.WriteLine("\tpush enterowl");
+                                    break;
+                                case Variable.TipoDato.Float:
+                                    asm.WriteLine("\tpush floatantewl");
+                                    break;
+
+                            }
+                            asm.WriteLine("\tcall printf");
+                            asm.WriteLine("\tadd esp, 8");
+                        }
+                        else
+                        {
+                            Console.Write(v.getValor());
+
+                            asm.WriteLine("\tpush dword [" + v.getNombre() + "]");
+                            switch (v.getTipo())
+                            {
+                                case Variable.TipoDato.Char:
+                                    asm.WriteLine("\tpush caracter");
+                                    break;
+                                case Variable.TipoDato.Int:
+                                    asm.WriteLine("\tpush entero");
+                                    break;
+                                case Variable.TipoDato.Float:
+                                    asm.WriteLine("\tpush floatante");
+                                    break;
+
+                            }
+                            asm.WriteLine("\tcall printf");
+                            asm.WriteLine("\tadd esp, 8");
+                        }
+
+                    }
                 }
+                else
+                {
+                    throw new Error(" Semantico, Linea " + linea + ": La variable " + variable + " no existe", log);
+                }
+
                 return "";
             }
-            else
+            else //nada
             {
                 match("(");
                 Expresion();
                 match(")");
-                //float nuevoValor = S.Pop();
+                asm.WriteLine("\tpop ");
                 if (Contenido == "+")
                 {
                     if (esWrite)
+                    {
                         Console.Write("");
+
+                        asm.WriteLine("\tpush ebp");
+                        asm.WriteLine("\tmov ebp, esp");
+                        asm.WriteLine("\tpush vacio");
+
+                        asm.WriteLine("\tcall printf");
+                        asm.WriteLine("\tmov esp, ebp");
+                        asm.WriteLine("\tpop ebp");
+                    }
                     else
+                    {
                         Console.WriteLine("");
+
+                        asm.WriteLine("\tpush ebp");
+                        asm.WriteLine("\tmov ebp, esp");
+                        asm.WriteLine("\tpush vaciowl");
+
+                        asm.WriteLine("\tcall printf");
+                        asm.WriteLine("\tmov esp, ebp");
+                        asm.WriteLine("\tpop ebp");
+                    }
 
                     listaConcatenacion(esWrite);
                 }
                 else
                 {
                     if (esWrite)
+                    {
                         Console.Write("");
+
+                        asm.WriteLine("\tpush ebp");
+                        asm.WriteLine("\tmov ebp, esp");
+                        asm.WriteLine("\tpush vacio");
+
+                        asm.WriteLine("\tcall printf");
+                        asm.WriteLine("\tmov esp, ebp");
+                        asm.WriteLine("\tpop ebp");
+                    }
                     else
+                    {
                         Console.WriteLine("");
-                    
+
+                        asm.WriteLine("\tpush ebp");
+                        asm.WriteLine("\tmov ebp, esp");
+                        asm.WriteLine("\tpush vaciowl");
+
+                        asm.WriteLine("\tcall printf");
+                        asm.WriteLine("\tmov esp, ebp");
+                        asm.WriteLine("\tpop ebp");
+                    }
                 }
                 return "";
             }
 
 
         }
-
-
         private void asm_Main()
         {
             asm.WriteLine();
