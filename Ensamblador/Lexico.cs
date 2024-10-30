@@ -4,14 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace Ensamblador
+namespace Semantica
 {
     public class Lexico : Token, IDisposable
     {
         protected StreamReader archivo;
         public StreamWriter log;
         protected StreamWriter asm;
-        protected int linea;
+        protected int linea, caracter;
         const int F = -1;
         const int E = -2;
         int[,] TRAND =
@@ -59,18 +59,8 @@ namespace Ensamblador
             asm = new StreamWriter(Path.GetFileNameWithoutExtension(nombre) + ".asm");
             asm.AutoFlush = true;
             log.WriteLine("Analizador Lexico");
-            asm.WriteLine("; Autor: Guillermo Fernandez");
-            asm.WriteLine("; Analizador Lexico");
-
-            if (Path.GetExtension(nombre) != ".cpp")
-            {
-                throw new Error("El archivo " + nombre + " no tiene extension CPP", log);
-            }
-            if (!File.Exists(nombre))
-            {
-                throw new Error("El archivo " + nombre + " no existe", log);
-            }
-            archivo = new StreamReader(nombre);
+            asm.WriteLine(";Autor: Erik, Brayan y Mauricio");
+            asm.WriteLine(";Analizador Lexico");
         }
         public void Dispose() // Destructor
         {
@@ -185,27 +175,27 @@ namespace Ensamblador
         {
             switch (Estado)
             {
-                case 01: setClasificacion(Tipos.Identificador); break;
-                case 02: setClasificacion(Tipos.Numero); break;
-                case 08: setClasificacion(Tipos.FinSentencia); break;
+                case 01: Clasificacion = Tipos.Identificador; break;
+                case 02: Clasificacion = Tipos.Numero; break;
+                case 08: Clasificacion = Tipos.FinSentencia; break;
                 case 09:
-                case 10: setClasificacion(Tipos.OpTermino); break;
-                case 11: setClasificacion(Tipos.IncTermino); break;
+                case 10: Clasificacion = Tipos.OpTermino; break;
+                case 11: Clasificacion = Tipos.IncTermino; break;
                 case 27:
-                case 12: setClasificacion(Tipos.OpFactor); break;
-                case 13: setClasificacion(Tipos.IncFactor); break;
+                case 12: Clasificacion = Tipos.OpFactor; break;
+                case 13: Clasificacion = Tipos.IncFactor; break;
                 case 14:
-                case 15: setClasificacion(Tipos.Caracter); break;
-                case 16: setClasificacion(Tipos.OpLogico); break;
-                case 17: setClasificacion(Tipos.OpRelacional); break;
-                case 18: setClasificacion(Tipos.Asignacion); break;
-                case 19: setClasificacion(Tipos.OpLogico); break;
-                case 20: setClasificacion(Tipos.OpRelacional); break;
-                case 21: setClasificacion(Tipos.OpTernario); break;
-                case 22: setClasificacion(Tipos.Cadena); break;
-                case 24: setClasificacion(Tipos.Inicio); break;
-                case 25: setClasificacion(Tipos.Fin); break;
-                case 26: setClasificacion(Tipos.Caracter); break;
+                case 15: Clasificacion = Tipos.Caracter; break;
+                case 16: Clasificacion = Tipos.OpLogico; break;
+                case 17: Clasificacion = Tipos.OpRelacional; break;
+                case 18: Clasificacion = Tipos.Asignacion; break;
+                case 19: Clasificacion = Tipos.OpLogico; break;
+                case 20: Clasificacion = Tipos.OpRelacional; break;
+                case 21: Clasificacion = Tipos.OpTernario; break;
+                case 22: Clasificacion = Tipos.Cadena; break;
+                case 24: Clasificacion = Tipos.Inicio; break;
+                case 25: Clasificacion = Tipos.Fin; break;
+                case 26: Clasificacion = Tipos.Caracter; break;
             }
         }
         public void nextToken()
@@ -234,41 +224,42 @@ namespace Ensamblador
                     {
                         linea++;
                     }
+                    caracter++;
                     archivo.Read();
                 }
             }
             if (Estado == E)
             {
-                if (getClasificacion() == Tipos.Numero)
+                if (Clasificacion == Tipos.Numero)
                 {
-                    throw new Error(" Se espera un digito " + buffer, log, linea);
+                    throw new Error("Error Lexico: en " + linea +" Se espera un digito " + buffer, log);
                 }
-                else if (getClasificacion() == Tipos.Cadena)
+                else if (Clasificacion == Tipos.Cadena)
                 {
-                    throw new Error(" Se espera cierre de cadena " + buffer, log, linea);
+                    throw new Error("Error Lexico: en " + linea +" Se espera cierre de cadena " + buffer, log);
                 }
-                else if (getClasificacion() == Tipos.OpFactor)
+                else if (Clasificacion == Tipos.OpFactor)
                 {
-                    throw new Error(" Se espera un cierre de comentario\n " + buffer, log, linea);
+                    throw new Error("Error Lexico: en " + linea +" Se espera un cierre de comentario\n " + buffer, log);
                 }
             }
-            setContenido(buffer);
-            if (getClasificacion() == Tipos.Identificador)
+            Contenido = buffer;
+            if (Clasificacion == Tipos.Identificador)
             {
-                switch (getContenido())
+                switch (Contenido)
                 {
                     case "char":
                     case "int":
-                    case "float": setClasificacion(Tipos.TipoDato); break;
+                    case "float": Clasificacion = Tipos.TipoDato; break;
                     case "if":
                     case "else":
-                    case "switch": setClasificacion(Tipos.Condicion); break;
+                    case "switch": Clasificacion = Tipos.Condicion; break;
                     case "while":
                     case "do":
-                    case "for": setClasificacion(Tipos.Ciclo); break;
+                    case "for": Clasificacion = Tipos.Ciclo; break;
                 }
             }
-            // log.WriteLine(getContenido() + " = " + getClasificacion());
+            // log.WriteLine(Contenido + " = " + Clasificacion);
         }
         public bool finArchivo()
         {
