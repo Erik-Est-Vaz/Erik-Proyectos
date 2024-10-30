@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo\\OneDrive\\Documentos\\Erik-Proyectos-1\\Ensamblador\\Semeantica.csproj": {}
+    "C:\\Users\\Lenovo\\OneDrive\\Documentos\\Erik-Proyectos\\Ensamblador\\Semeantica.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo\\OneDrive\\Documentos\\Erik-Proyectos-1\\Ensamblador\\Semeantica.csproj": {
+    "C:\\Users\\Lenovo\\OneDrive\\Documentos\\Erik-Proyectos\\Ensamblador\\Semeantica.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\Erik-Proyectos-1\\Ensamblador\\Semeantica.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\Erik-Proyectos\\Ensamblador\\Semeantica.csproj",
         "projectName": "Semeantica",
-        "projectPath": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\Erik-Proyectos-1\\Ensamblador\\Semeantica.csproj",
+        "projectPath": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\Erik-Proyectos\\Ensamblador\\Semeantica.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\Erik-Proyectos-1\\Ensamblador\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\Erik-Proyectos\\Ensamblador\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config"

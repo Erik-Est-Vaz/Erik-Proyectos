@@ -940,7 +940,7 @@ namespace Semantica
         }
 
 
-        //MasTermino -> (OperadorTermino Termino)?
+         //MasTermino -> (OperadorTermino Termino)?
         private void MasTermino()
         {
             if (Clasificacion == Tipos.OpTermino)
@@ -948,14 +948,19 @@ namespace Semantica
                 string operador = Contenido;
                 match(Tipos.OpTermino);
                 Termino();
-                //float R1 = S.Pop();
-                //float R2 = S.Pop();
+
+                asm.WriteLine("\tpop ebx");
+                asm.WriteLine("\tpop eax");
                 switch (operador)
                 {
                     case "+": //S.Push(R2 + R1); 
-                    break;
+                        asm.WriteLine("\tadd eax, ebx");
+                        asm.WriteLine("\tpush eax");
+                        break;
                     case "-": //S.Push(R2 - R1); 
-                    break;
+                        asm.WriteLine("\tsub eax, ebx");
+                        asm.WriteLine("\tpush eax");
+                        break;
                 }
 
             }
@@ -978,16 +983,23 @@ namespace Semantica
                 string operador = Contenido;
                 match(Tipos.OpFactor);
                 Factor();
-                //float R1 = S.Pop();
-                //float R2 = S.Pop();
+
+                asm.WriteLine("\tpop ebx");
+                asm.WriteLine("\tpop eax");
                 switch (operador)
                 {
                     case "*": //S.Push(R2 * R1); 
-                    break;
-                    case "/": //S.Push(R2 / R1); 
-                    break;
+                        asm.WriteLine("\tmul ebx");
+                        asm.WriteLine("\tpush eax");
+                        break;
+                    case "/": //S.Push(R2 / R1);
+                        asm.WriteLine("\tdiv ebx");
+                        asm.WriteLine("\tpush eax");
+                        break;
                     case "%": //S.Push(R2 % R1); 
-                    break;
+                        asm.WriteLine("\tdiv ebx");
+                        asm.WriteLine("\tpush edx");
+                        break;
                 }
 
             }
@@ -1000,6 +1012,9 @@ namespace Semantica
             if (Clasificacion == Tipos.Numero)
             {
                 //S.Push(float.Parse(Contenido));
+                asm.WriteLine("\tmov eax, " + Contenido);
+                asm.WriteLine("\tpush eax");
+
                 if (tipoDatoExpresion < valorToTipo(float.Parse(Contenido)))
                 {
                     tipoDatoExpresion = valorToTipo(float.Parse(Contenido));
@@ -1015,7 +1030,10 @@ namespace Semantica
 
                 if (v != null)
                 {
-                    //S.Push(v.getValor());
+
+                    asm.WriteLine("\tmov eax, [" + Contenido + "]");
+                    asm.WriteLine("\tpush eax");
+
                     if (tipoDatoExpresion < v.getTipo())
                     {
                         tipoDatoExpresion = v.getTipo();
@@ -1046,7 +1064,8 @@ namespace Semantica
                 if (huboCast && aCastear != Variable.TipoDato.Float)
                 {
                     tipoDatoExpresion = aCastear;
-                    //float valor = S.Pop();
+                    //float valor = v.getValor();
+                    asm.WriteLine("\tpop eax");
                     if (aCastear == Variable.TipoDato.Char)
                     {
                         //valor %= 256;
@@ -1056,6 +1075,8 @@ namespace Semantica
                         //valor %= 65536;
                     }
                     //S.Push(valor);
+                    asm.WriteLine("\tmov eax, "/* + v.getNombre()*/);
+                    asm.WriteLine("\tpush eax");
                 }
             }
         }
