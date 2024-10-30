@@ -268,11 +268,9 @@ namespace Semantica
         }
 
         //Modificación 6
-        // Asignacion -> Identificador = Expresion;
+     // Asignacion -> Identificador = Expresion;
         private float Asignacion(string variable)
         {
-            //string variable = Contenido;
-            //match(Tipos.Identificador);
 
             float nuevoValor = 0;
 
@@ -287,6 +285,7 @@ namespace Semantica
                 throw new Error(" Semantico, Linea " + linea + ": La variable " + variable + " no existe", log);
             }
 
+            asm.WriteLine(";Asignacion a " + v.getNombre());
 
             tipoDatoExpresion = Variable.TipoDato.Char;
 
@@ -300,18 +299,25 @@ namespace Semantica
                     if (Contenido == "Read")
                     {
                         match("Read");
-                        //if (ejecutar)
-                        {
-                            float valor = Console.Read();
-                        }
-                        // 8
+
+                        asm.WriteLine("\tpush scanner");
+                        asm.WriteLine("\tpush entero");
+                        asm.WriteLine("\tcall scanf");
+                        asm.WriteLine("\tadd esp, 8");
+                        asm.WriteLine("\tmov eax, [scanner]");
+                        asm.WriteLine("\tmov dword[" + v.getNombre() + "], eax");
                     }
                     else
                     {
                         match("ReadLine");
                         try
                         {
-                            nuevoValor = float.Parse("" + Console.ReadLine());
+                            asm.WriteLine("\tpush scanner");
+                            asm.WriteLine("\tpush enterowl");
+                            asm.WriteLine("\tcall scanf");
+                            asm.WriteLine("\tadd esp, 8");
+                            asm.WriteLine("\tmov eax, [scanner]");
+                            asm.WriteLine("\tmov dword[" + v.getNombre() + "], eax");
                         }
                         catch
                         {
@@ -325,7 +331,8 @@ namespace Semantica
                 else
                 {
                     Expresion();
-                    //nuevoValor = S.Pop();
+                    asm.WriteLine("\tpop eax");
+                    asm.WriteLine("\tmov dword [" + variable + "], eax");
                 }
             }
             else if (Contenido == "++")
