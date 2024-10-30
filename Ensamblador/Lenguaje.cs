@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 /*
 
-    El código analiza un archivo en c++ y genera código en ensamblador en MASM, NASM, etc... ¡Excepto EMU 8086!
+    El código analiza un archivo en c++ y genera código en ensamblador en MASM, NASM, etc... ¡Excepto EMU 8086! 
+    
 
     1. Completar la asignación ++, +=, -=, etc LISTO
     2. Console.Write y Console.WriteLine
