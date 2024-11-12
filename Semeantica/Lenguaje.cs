@@ -16,7 +16,7 @@ using System.Threading.Tasks;
     5. Programar el while
     6. Programar el for
     7. Se feliz :) PENDIENTE
-    8. Tomar en cuenta todas las condiciones LISTO
+    8. Tomar en cuenta todas las condiciones LISTO :)
 
 */
 
