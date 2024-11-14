@@ -17,7 +17,7 @@ using System.Threading.Tasks;
     6. listaConcatenacion: 30, 40, 50, 12, 0
     7. Quitar comillas y considerar el Write
     8. Emular el for -- 15 puntos
-    9. Emular el while -- 15 puntos
+    9. Emular el while -- 15 puntosasds
 */
 
 namespace Semantica
