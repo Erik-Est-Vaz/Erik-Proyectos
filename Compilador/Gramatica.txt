@@ -1,0 +1,5 @@
+namespace : Java;
+Programa -> Librerias; Main\;
+Main -> static? void Main(string[] args) BloqueInstruciones\?\;
+Identificador Numero Caracter
+\( \)
