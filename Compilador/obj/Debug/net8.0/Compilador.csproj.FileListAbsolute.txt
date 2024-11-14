@@ -1,0 +1,14 @@
+C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-2\Compilador\obj\Debug\net8.0\Compilador.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-2\Compilador\obj\Debug\net8.0\Compilador.AssemblyInfoInputs.cache
+C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-2\Compilador\obj\Debug\net8.0\Compilador.AssemblyInfo.cs
+C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-2\Compilador\obj\Debug\net8.0\Compilador.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-2\Compilador\bin\Debug\net8.0\Compilador.exe
+C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-2\Compilador\bin\Debug\net8.0\Compilador.deps.json
+C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-2\Compilador\bin\Debug\net8.0\Compilador.runtimeconfig.json
+C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-2\Compilador\bin\Debug\net8.0\Compilador.dll
+C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-2\Compilador\bin\Debug\net8.0\Compilador.pdb
+C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-2\Compilador\obj\Debug\net8.0\Compilador.dll
+C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-2\Compilador\obj\Debug\net8.0\refint\Compilador.dll
+C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-2\Compilador\obj\Debug\net8.0\Compilador.pdb
+C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-2\Compilador\obj\Debug\net8.0\Compilador.genruntimeconfig.cache
+C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-2\Compilador\obj\Debug\net8.0\ref\Compilador.dll

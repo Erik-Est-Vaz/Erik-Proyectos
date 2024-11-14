@@ -29,12 +29,22 @@ namespace Compilador
         {
             lenguajecs.WriteLine("using System;");
             lenguajecs.WriteLine("using System.Collections.Generic;");
-            lenguajecs.WriteLine("");
-            lenguajecs.WriteLine("namespace " + nspace);
-            
+            lenguajecs.WriteLine("using System.Linq;");
+            lenguajecs.WriteLine("using System.Net.Http.Headers;");
+            lenguajecs.WriteLine("using System.Reflection.Metadata.Ecma335;");
+            lenguajecs.WriteLine("using System.Runtime.InteropServices;");
+            lenguajecs.WriteLine("using System.Threading.Tasks;");
+            lenguajecs.WriteLine("\nnamespace "+nspace);
             lenguajecs.WriteLine("{");
-            lenguajecs.WriteLine("");
-
+            lenguajecs.WriteLine("    public class Lenguaje : Sintaxis");
+            lenguajecs.WriteLine("    {");
+            lenguajecs.WriteLine("        public Lenguaje()");
+            lenguajecs.WriteLine("        {");
+            lenguajecs.WriteLine("        }");
+            lenguajecs.WriteLine("        public Lenguaje(string nombre) : base(nombre)");
+            lenguajecs.WriteLine("        {");
+            lenguajecs.WriteLine("        }");
+            lenguajecs.WriteLine("        public void ");
 
 
 
@@ -49,7 +59,6 @@ namespace Compilador
             
             match(Tipos.SNT);
             match(";");
-
             lenguajecs.WriteLine("    }");
             lenguajecs.WriteLine("}");
         }
