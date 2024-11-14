@@ -1,2 +1,6 @@
 Analizador Lexico
 namespace = ST
+: = ST
+Java = SNT
+; = ST
+Programa = SNT

@@ -27,6 +27,7 @@ namespace Compilador
             {F  , F  , F  , F  , F  , F  , F  , F  , F  , F ,  F }, // 8
             {F  , F  , F  , F  , F  , F  , F  , F  , F  , F ,  F }, // 9
             {F  , F  , F  , F  , F  , F  , F  , F  , F  , F ,  F }, // 10
+            {F  , F  , F  , F  , F  , F  , F  , F  , F  , F ,  F }  // 11
         };
         public Lexico(string nombre = "Gramatica.txt") // Constructor
         {
@@ -102,6 +103,7 @@ namespace Compilador
             while (Estado >= 0)
             {
                 c = (char)archivo.Peek();
+                Console.WriteLine("DESPUES DE c = (char)archivo.Peek();");
 
                 Estado = TRAND[Estado, Columna(c)];
                 Clasificar(Estado);
@@ -122,6 +124,8 @@ namespace Compilador
             }
 
             Contenido = buffer;
+            
+            Console.WriteLine("ANTES DEL IF");
 
             if(EsTipo(Contenido))
             {
@@ -131,6 +135,8 @@ namespace Compilador
             {
                 Clasificacion = Tipos.SNT;
             }
+
+            Console.WriteLine("DESPUES DEL IF");
 
             log.WriteLine(Contenido + " = " + Clasificacion);
 

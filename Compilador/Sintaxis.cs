@@ -19,6 +19,7 @@ namespace Compilador
         }
         public void match(string espera)
         {
+            Console.WriteLine("ANTES DEL IF MATCH");
             if (Contenido == espera)
             {
                 nextToken();
@@ -27,6 +28,7 @@ namespace Compilador
             {
                 throw new Error(" Sintaxis: en " + linea +"  se espera un " + espera + " (" + Contenido + ")",log);
             }
+            Console.WriteLine("DESPUES DEL IF MATCH");
         }
         public void match(Tipos espera)
         {

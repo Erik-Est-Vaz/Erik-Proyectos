@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\Erik-Proyectos-2\\Compilador\\Compilador.csproj",
+      "projectUniqueName": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\Erik-Proyectos-3\\Compilador\\Compilador.csproj",
       "projectName": "Compilador",
-      "projectPath": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\Erik-Proyectos-2\\Compilador\\Compilador.csproj",
+      "projectPath": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\Erik-Proyectos-3\\Compilador\\Compilador.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\Erik-Proyectos-2\\Compilador\\obj\\",
+      "outputPath": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\Erik-Proyectos-3\\Compilador\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config"

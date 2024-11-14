@@ -52,11 +52,18 @@ namespace Compilador
         }
         public void genera()
         {
+            Console.WriteLine("estoy en genera");
             match("namespace");
+            Console.WriteLine("DESPUES DEL NAME SPACE");
             match(":");
+            Console.WriteLine("DESPUES DEL ':'");
+
+            Console.WriteLine("ANTES DEL ESQUELETO");
 
             esqueleto(Contenido);
-            
+
+            Console.WriteLine("DESPUES DEL ESQUELETO");
+
             match(Tipos.SNT);
             match(";");
             lenguajecs.WriteLine("    }");
