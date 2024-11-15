@@ -44,7 +44,7 @@ namespace Compilador
 
             archivo = new StreamReader(nombre);
 
-            lenguajecs = new StreamWriter("Lenguaje2.cs");
+            lenguajecs = new StreamWriter("Lenguaje2.cpp");
         }
         public void Dispose() // Destructor
         {
@@ -91,8 +91,8 @@ namespace Compilador
                 case 05: Clasificacion = Tipos.FinProduccion;   break;
                 case 06: Clasificacion = Tipos.Epsilon;         break;
                 case 07: Clasificacion = Tipos.OR;              break;
-                case 08: Clasificacion = Tipos.Derecho;         break;
-                case 09: Clasificacion = Tipos.Izquierdo;       break;
+                case 08: Clasificacion = Tipos.Izquierdo;       break;
+                case 09: Clasificacion = Tipos.Derecho;         break;
             }
         }
         public void nextToken()
@@ -103,7 +103,6 @@ namespace Compilador
             while (Estado >= 0)
             {
                 c = (char)archivo.Peek();
-                Console.WriteLine("DESPUES DE c = (char)archivo.Peek();");
 
                 Estado = TRAND[Estado, Columna(c)];
                 Clasificar(Estado);
@@ -124,8 +123,6 @@ namespace Compilador
             }
 
             Contenido = buffer;
-            
-            Console.WriteLine("ANTES DEL IF");
 
             if(EsTipo(Contenido))
             {
@@ -135,8 +132,6 @@ namespace Compilador
             {
                 Clasificacion = Tipos.SNT;
             }
-
-            Console.WriteLine("DESPUES DEL IF");
 
             log.WriteLine(Contenido + " = " + Clasificacion);
 
