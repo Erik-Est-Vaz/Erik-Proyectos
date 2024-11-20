@@ -12,7 +12,7 @@ using System.Threading.Tasks;
     1. Hacer que solo la primera producción sea publica, el resto es privada. --> LISTO
     2. Implementar la cerradura Epsilon.
     3. Implementar el operador OR.
-    4. Implementar un sistema de identación automatica. --> LISTO
+    4. Implementar un sistema de identación automatica. --> LISTO              
 
 */
 
@@ -51,12 +51,14 @@ namespace Compilador
             imprime("public Lenguaje()", cont, true);
             imprime("{", cont, true);
             cont++;
+            imprime("", cont, true);
             cont--;
             imprime("}", cont, true);
             
             imprime("public Lenguaje(string nombre) : base(nombre)", cont, true);
             imprime("{", cont, true);
             cont++;
+            imprime("", cont, true);
             cont--;
             imprime("}", cont, true);
             
@@ -103,9 +105,11 @@ namespace Compilador
             }
             match(Tipos.SNT);
             match(Tipos.Flecha);
-            conjuntoTokens();
+            conjuntoTokens(false);
             match(Tipos.FinProduccion);
             
+            imprime("", cont, true);
+
             cont--;
             imprime("}", cont, true);
 
@@ -113,45 +117,52 @@ namespace Compilador
             {
                 producciones();
             }
-
-            /*match(Tipos.SNT);
-            match(Tipos.Flecha);
-
-            if(Clasificacion == Tipos.SNT && primera == true)
-            {
-                lenguajecs.WriteLine("        public void " + Contenido + "()");
-                lenguajecs.WriteLine("        {");
-
-                primera = false;
-
-            }
-            else if(Clasificacion == Tipos.SNT )
-            {
-                lenguajecs.WriteLine("        private void " + Contenido + "()");
-                lenguajecs.WriteLine("        {");
-            }
-
-            match(Tipos.SNT);
-            
-            lenguajecs.WriteLine("        }");
-
-            if(Clasificacion == Tipos.FinProduccion)
-            {
-                match(Tipos.FinProduccion);
-            }
-            else if(Clasificacion == Tipos.SNT)
-            {
-                producciones();
-            }*/
             
         }
 
-        private void conjuntoTokens()
+        private void conjuntoTokens(bool enOR)
         {
-            if(Clasificacion == Tipos.SNT)
+            if (Clasificacion == Tipos.Izquierdo || enOR == true)
             {
-                imprime(Contenido + "();", cont, true);
-                match(Tipos.SNT);
+                if(enOR == false)
+                {
+                    match(Tipos.Izquierdo);
+                    imprime("if (", cont, false);
+                }
+                else
+                {
+                    imprime("if (", 0, false);
+                }
+                    
+                    Console.WriteLine("W-" + Contenido + "  " + Clasificacion);
+
+                if (Clasificacion == Tipos.SNT)
+                {
+                    imprime("Clasificacion == Tipos." + Contenido + ")", 0, true);
+                    imprime("{", cont, true);
+                    cont++;
+                    imprime(Contenido + "();", cont, true);
+                    match(Tipos.SNT);
+                }
+
+                if(Contenido == "|" && Contenido != ")" )
+                {
+                    match("|");
+                        Console.WriteLine("matchee |");
+
+                    if(Clasificacion == Tipos.SNT)
+                    {
+                        cont--;
+                        imprime("}", cont, true);
+                        imprime("else ", cont, false);
+                        conjuntoTokens(true);
+
+                    }
+                    else
+                    {
+                        //error
+                    }
+                 }
             }
             else if(Clasificacion == Tipos.ST)
             {
@@ -163,38 +174,41 @@ namespace Compilador
                 imprime("match(Tipos." + Contenido + ");", cont, true);
                 match(Tipos.Tipo);
             }
-            else if (Clasificacion == Tipos.Izquierdo)
+            else if(Clasificacion == Tipos.SNT)
             {
-                match(Tipos.Izquierdo);
-
-                imprime("if (", cont, true);
-
-                if (Clasificacion == Tipos.ST)
-                {
-                    imprime("Contenido() == \"" + Contenido + "\")", cont, true);
-                    imprime("{", cont, true);
-                    cont++;
-                    imprime("match(\"" + Contenido + "\");", cont, true);
-                    match(Tipos.ST);
-                }
-                else if (Clasificacion == Tipos.Tipo)
-                {
-                    imprime("Clasificacion == Tipos." + Contenido + ")", cont, true);
-                    imprime("{", cont, true);
-                    cont++;
-                    imprime("match(Tipos." + Contenido + ");", cont, true);
-                    match(Tipos.Tipo);
-                }
-                match(Tipos.Derecho);
-                
+                imprime(Contenido + "();", cont, true);
+                match(Tipos.SNT);
+            }
+            else if(Clasificacion == Tipos.Derecho)
+            {
                 cont--;
                 imprime("}", cont, true);
+
+                match(Tipos.Derecho);
+                    Console.WriteLine(Contenido + "  " + Clasificacion);
+
+                if(Clasificacion == Tipos.Epsilon || Contenido == "?")
+                {
+                
+                    match(Tipos.Epsilon);
+
+                }
+                else
+                {
+                    imprime("else", cont, true);
+                    imprime("{", cont, true);
+                    cont++;
+                    imprime("// ESTO DEBERIA SER UN ERROR", cont, true);
+                    cont--;
+                    imprime("}", cont, true);
+                }
             }
 
             if(Clasificacion != Tipos.FinProduccion)
             {
-                conjuntoTokens();
+                conjuntoTokens(false);
             }
+            
         }
 
         private void imprime(string text, int cont, bool esWiriteLine)
