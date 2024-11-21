@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 /*
 
     1. Hacer que solo la primera producción sea publica, el resto es privada. --> LISTO
-    2. Implementar la cerradura Epsilon.
-    3. Implementar el operador OR.
+    2. Implementar la cerradura Epsilon. --> LIST0
+    3. Implementar el operador OR. --> LISTO
     4. Implementar un sistema de identación automatica. --> LISTO              
 
 */
@@ -22,16 +22,16 @@ namespace Compilador
     {
 
         bool primera = true;
-        int cont  = 0;
+        int cont = 0;
 
         public Lenguaje()
         {
-            
+
         }
 
         public Lenguaje(string nombre) : base(nombre)
         {
-            
+
         }
         private void esqueleto(string nspace)
         {
@@ -54,21 +54,21 @@ namespace Compilador
             imprime("", cont, true);
             cont--;
             imprime("}", cont, true);
-            
+
             imprime("public Lenguaje(string nombre) : base(nombre)", cont, true);
             imprime("{", cont, true);
             cont++;
             imprime("", cont, true);
             cont--;
             imprime("}", cont, true);
-            
+
             imprime(" ", cont, true);
         }
 
 
         public void genera()
         {
-            
+
             match("namespace");
             match(":");
 
@@ -78,17 +78,17 @@ namespace Compilador
             match(";");
 
             producciones();
-            
+
             cont--;
             imprime("}", cont, true);
-            /*cont--;
-            imprime("}", cont, true);*/
+            cont--;
+            imprime("}", cont, true);
         }
 
         private void producciones()
         {
-            
-            
+
+
             if (Clasificacion == Tipos.SNT && primera == true)
             {
                 imprime("public void " + Contenido + "()", cont, true);
@@ -97,7 +97,7 @@ namespace Compilador
 
                 primera = false;
             }
-            else if(Clasificacion == Tipos.SNT )
+            else if (Clasificacion == Tipos.SNT)
             {
                 imprime("private void " + Contenido + "()", cont, true);
                 imprime("{", cont, true);
@@ -107,7 +107,7 @@ namespace Compilador
             match(Tipos.Flecha);
             conjuntoTokens(false);
             match(Tipos.FinProduccion);
-            
+
             imprime("", cont, true);
 
             cont--;
@@ -117,79 +117,112 @@ namespace Compilador
             {
                 producciones();
             }
-            
+
         }
 
         private void conjuntoTokens(bool enOR)
         {
+            Console.WriteLine("Cont -> " + Contenido + "  " + Clasificacion);
+
             if (Clasificacion == Tipos.Izquierdo || enOR == true)
             {
-                if(enOR == false)
+                if (enOR == false)
                 {
                     match(Tipos.Izquierdo);
                     imprime("if (", cont, false);
                 }
+                else if (Clasificacion == Tipos.Izquierdo)
+                {
+                    match(Tipos.Izquierdo);
+                    imprime("if (", 0, false);
+                }  
                 else
                 {
                     imprime("if (", 0, false);
                 }
-                    
-                    Console.WriteLine("W-" + Contenido + "  " + Clasificacion);
 
-                if (Clasificacion == Tipos.SNT)
+                if (Clasificacion == Tipos.SNT || Clasificacion == Tipos.ST || Clasificacion == Tipos.Tipo)
                 {
-                    imprime("Clasificacion == Tipos." + Contenido + ")", 0, true);
-                    imprime("{", cont, true);
-                    cont++;
-                    imprime(Contenido + "();", cont, true);
-                    match(Tipos.SNT);
-                }
+                    if(Clasificacion ==Tipos.SNT)
+                    {
+                        imprime("Clasificacion == Tipos." + Contenido + ")", 0, true);
+                        imprime("{", cont, true);
+                        cont++;
+                        imprime(Contenido + "();", cont, true);
+                        match(Tipos.SNT);
+                    }
+                    else if (Clasificacion ==Tipos.ST)
+                    {
+                        imprime("Contenido == \"" + Contenido + "\")", 0, true);
+                        imprime("{", cont, true);
+                        cont++;
+                        imprime("match(\"" + Contenido + "\");", cont, true);
+                        match(Tipos.ST);
+                    }
+                    else  if (Clasificacion ==Tipos.Tipo)
+                    {
+                        imprime("Clasificacion == Tipos." + Contenido + ")", 0, true);
+                        imprime("{", cont, true);
+                        cont++;
+                        imprime("match(Tipos." + Contenido + ");", cont, true);
+                        match(Tipos.Tipo);
+                    }
 
-                if(Contenido == "|" && Contenido != ")" )
-                {
-                    match("|");
+                    if (Clasificacion == Tipos.OR)
+                    {
+                        match(Tipos.OR);
                         Console.WriteLine("matchee |");
 
-                    if(Clasificacion == Tipos.SNT)
-                    {
-                        cont--;
-                        imprime("}", cont, true);
-                        imprime("else ", cont, false);
-                        conjuntoTokens(true);
+                        if (Clasificacion == Tipos.SNT || Clasificacion == Tipos.ST || Clasificacion == Tipos.Tipo || Clasificacion == Tipos.Izquierdo)
+                        {
+                            cont--;
+                            imprime("}", cont, true);
+                            imprime("else ", cont, false);
+                            
 
+                            if(Clasificacion == Tipos.Izquierdo)
+                            {
+                                conjuntoTokens(true);
+                            }
+                            else
+                            {
+                                conjuntoTokens(true);
+                            }
+
+                        }
+                        else
+                        {
+                            throw new Error(" Semantico, Linea " + linea + ": Falta de sentencia", log);
+                        }
                     }
-                    else
-                    {
-                        //error
-                    }
-                 }
+
+                }
             }
-            else if(Clasificacion == Tipos.ST)
+            else if (Clasificacion == Tipos.ST)
             {
                 imprime("match(\"" + Contenido + "\");", cont, true);
                 match(Tipos.ST);
             }
-            else if(Clasificacion == Tipos.Tipo)
+            else if (Clasificacion == Tipos.Tipo)
             {
                 imprime("match(Tipos." + Contenido + ");", cont, true);
                 match(Tipos.Tipo);
             }
-            else if(Clasificacion == Tipos.SNT)
+            else if (Clasificacion == Tipos.SNT)
             {
                 imprime(Contenido + "();", cont, true);
                 match(Tipos.SNT);
             }
-            else if(Clasificacion == Tipos.Derecho)
+            else if (Clasificacion == Tipos.Derecho)
             {
                 cont--;
                 imprime("}", cont, true);
 
                 match(Tipos.Derecho);
-                    Console.WriteLine(Contenido + "  " + Clasificacion);
 
-                if(Clasificacion == Tipos.Epsilon || Contenido == "?")
+                if (Clasificacion == Tipos.Epsilon)
                 {
-                
+
                     match(Tipos.Epsilon);
 
                 }
@@ -198,28 +231,46 @@ namespace Compilador
                     imprime("else", cont, true);
                     imprime("{", cont, true);
                     cont++;
-                    imprime("// ESTO DEBERIA SER UN ERROR", cont, true);
+                    imprime("throw new Error(\" Sintaxis, Linea \" + linea + ,\": Se esperaba un SNT\", log);", cont, true);
                     cont--;
                     imprime("}", cont, true);
                 }
             }
+            else if (Clasificacion == Tipos.OR)
+            {
+                match(Tipos.OR);
 
-            if(Clasificacion != Tipos.FinProduccion)
+                if (Clasificacion == Tipos.SNT || Clasificacion == Tipos.ST || Clasificacion == Tipos.Tipo)
+                {
+                    cont--;
+                    imprime("}", cont, true);
+                    imprime("else ", cont, false);
+
+                    conjuntoTokens(true);
+
+                }
+                else
+                {
+                    throw new Error(" Semantico, Linea " + linea + ": Falta de sentencia", log);
+                }
+            }
+
+            if (Clasificacion != Tipos.FinProduccion)
             {
                 conjuntoTokens(false);
             }
-            
+
         }
 
         private void imprime(string text, int cont, bool esWiriteLine)
         {
 
-            for(int i = 0; i < cont; i++)
+            for (int i = 0; i < cont; i++)
             {
                 lenguajecs.Write("\t");
             }
 
-            if(esWiriteLine)
+            if (esWiriteLine)
             {
                 lenguajecs.WriteLine(text);
             }
@@ -229,8 +280,6 @@ namespace Compilador
             }
 
         }
-
-
 
     }
 }

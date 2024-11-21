@@ -27,3 +27,18 @@ C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-3\Compilador\obj\Debug\net8.0
 C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-3\Compilador\obj\Debug\net8.0\Compilador.pdb
 C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-3\Compilador\obj\Debug\net8.0\Compilador.genruntimeconfig.cache
 C:\Users\Lenovo\OneDrive\Documentos\Erik-Proyectos-3\Compilador\obj\Debug\net8.0\ref\Compilador.dll
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Compilador\bin\Debug\net8.0\Compilador.exe
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Compilador\bin\Debug\net8.0\Compilador.deps.json
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Compilador\bin\Debug\net8.0\Compilador.runtimeconfig.json
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Compilador\bin\Debug\net8.0\Compilador.dll
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Compilador\bin\Debug\net8.0\Compilador.pdb
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Compilador\obj\Debug\net8.0\Compilador.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Compilador\obj\Debug\net8.0\Compilador.AssemblyInfoInputs.cache
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Compilador\obj\Debug\net8.0\Compilador.AssemblyInfo.cs
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Compilador\obj\Debug\net8.0\Compilador.csproj.CoreCompileInputs.cache
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Compilador\obj\Debug\net8.0\Compilador.sourcelink.json
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Compilador\obj\Debug\net8.0\Compilador.dll
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Compilador\obj\Debug\net8.0\refint\Compilador.dll
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Compilador\obj\Debug\net8.0\Compilador.pdb
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Compilador\obj\Debug\net8.0\Compilador.genruntimeconfig.cache
+C:\Users\anony\Documents\LYA II\Erik-Proyectos\Compilador\obj\Debug\net8.0\ref\Compilador.dll

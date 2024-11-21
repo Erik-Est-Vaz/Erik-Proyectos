@@ -6,42 +6,63 @@ using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace Java
+namespace Lenguaje
 {
 	public class Lenguaje : Sintaxis
 	{
 		public Lenguaje()
 		{
+			
 		}
 		public Lenguaje(string nombre) : base(nombre)
 		{
+			
 		}
 		 
 		public void Programa()
 		{
-			Librerias();
-			Main();
+			A();
+			match("b");
+			C();
+			
 		}
-		private void Librerias()
+		private void A()
 		{
-			match("#");
-			match("include");
-			match("<");
-			match(Tipos.Identificador);
-			if (
+			C();
+			if (Clasificacion == Tipos.Numero)
+			{
+				match(Tipos.Numero);
+				match("b");
+				C();
+				D();
+			}
+			D();
+			
 		}
-		match("?");
-		match(">");
-	}
-	private void Main()
-	{
-		match("void");
-		Main();
-		match("(");
-		match(")");
-		BloqueInstrucciones();
-	}
-	private void BloqueInstrucciones()
-	{
+		private void C()
+		{
+			D();
+			if (Contenido == "a")
+			{
+				match("a");
+			}
+			else if (Contenido == "b")
+			{
+				match("b");
+			}
+			else if (Clasificacion == Tipos.D)
+			{
+				D();
+			}
+			else
+			{
+				throw new Error(" Sintaxis, Linea " + linea + ,": Se esperaba un SNT", log);
+			}
+			
+		}
+		private void D()
+		{
+			
+		}
 	}
 }

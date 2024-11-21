@@ -1,5 +1,5 @@
-namespace : Java;
-Programa  -> Librerias Main\; 
-Librerias -> #include <Identificador\( \)?>\; 
-Main      -> void Main() BloqueInstrucciones\; 
-BloqueInstrucciones -> \;
+namespace : Lenguaje;
+Programa  -> A b C \; 
+A -> C \( Numero b C D \) \? D \;
+C -> D \( a \| b \| D \) \; 
+D -> \;
