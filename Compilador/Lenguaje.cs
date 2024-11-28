@@ -126,6 +126,7 @@ namespace Compilador
 
             Tipos a;
             String b;
+            bool final = false;
 
             if (Clasificacion == Tipos.Izquierdo || enOR == true)
             {
@@ -142,7 +143,7 @@ namespace Compilador
 
                     if (Clasificacion == Tipos.SNT)
                     {
-                        match(Tipos.SNT);
+                        throw new Error(" Semantico, Linea " + linea + ": No puede ser un SNT", log);
                     }
                     else if (Clasificacion == Tipos.ST)
                     {
@@ -192,38 +193,60 @@ namespace Compilador
                     }
                     else
                     {
-                        if (a == Tipos.SNT)
+
+                        match(Tipos.Derecho);
+
+                        if (Clasificacion == Tipos.Epsilon)
                         {
-                            imprime("", cont, true);
-                            imprime("{", cont, true);
-                            cont++;
-                            imprime(b + "();", cont, true);
-                        }
-                        else if (a == Tipos.ST)
-                        {
-                            imprime("\n{", cont, true);
-                            cont++;
-                            imprime("match(\"" + b + "\");", cont, true);
+                            match(Tipos.Epsilon);
+                            imprime("if (", 0, false);
+                            chancla = true;
+                            final = true;
                         }
                         else
                         {
-                            imprime("\n{", cont, true);
-                            cont++;
-                            imprime("match(Tipos." + b + ");", cont, true);
-                        }
 
-                        chancla = false;
+                            if (a == Tipos.SNT)
+                            {
+                                imprime("", cont, true);
+                                imprime("{", cont, true);
+                                cont++;
+                                imprime(b + "();", cont, true);
+                            }
+                            else if (a == Tipos.ST)
+                            {
+                                imprime("", cont, true);
+                                imprime("{", cont, true);
+                                cont++;
+                                imprime("match(\"" + b + "\");", cont, true);
+                            }
+                            else
+                            {
+                                imprime("", cont, true);
+                                imprime("{", cont, true);
+                                cont++;
+                                imprime("match(Tipos." + b + ");", cont, true);
+                            }
+
+                            chancla = false;
+
+                            cont--;
+                            imprime("}", cont, true);
+
+                        }
                     }
 
                 }
 
-                if (a == Tipos.SNT || a == Tipos.ST || a == Tipos.Tipo || a == Tipos.OR && chancla)
+                if ((a == Tipos.SNT || a == Tipos.ST || a == Tipos.Tipo || a == Tipos.OR ) && chancla)
                 {
-
                     if (Clasificacion == Tipos.OR)
                     {
-
-                        if (a == Tipos.ST)
+                        if (a == Tipos.SNT)
+                        {
+                            throw new Error(" Semantico, Linea " + linea + ": No puede ser un SNT", log);
+                        }
+                        else if (a == Tipos.ST)
                         {
                             imprime("Contenido == \"" + b + "\")", 0, true);
                             imprime("{", cont, true);
@@ -248,19 +271,20 @@ namespace Compilador
                             imprime("else ", cont, false);
 
                             conjuntoTokens(true);
-
                         }
                         else
                         {
                             throw new Error(" Semantico, Linea " + linea + ": Falta de sentencia", log);
                         }
-
-
                     }
                     else
-                    {
-                        
-                        if (a == Tipos.ST)
+                    { 
+                        if (a == Tipos.SNT && Clasificacion != Tipos.Derecho)
+                        {
+                            Console.WriteLine("ESTOPY EN SNT Y DERECHO");
+                            throw new Error(" Semantico, Linea " + linea + ": No puede ser un SNT", log);
+                        }
+                        else if (a == Tipos.ST)
                         {
                             imprime("Contenido == \"" + b + "\")", 0, true);
                             imprime("{", cont, true);
@@ -275,10 +299,13 @@ namespace Compilador
                             imprime("match(Tipos." + b + ");", cont, true);
                         }
 
-                        
+                        if(final)
+                        {
+                            cont--;
+                            imprime("}", cont, true);
+                        }
 
                     }
-
                 }
             }
             else if (Clasificacion == Tipos.ST)
@@ -302,22 +329,6 @@ namespace Compilador
                 imprime("}", cont, true);
 
                 match(Tipos.Derecho);
-
-                if (Clasificacion == Tipos.Epsilon)
-                {
-
-                    match(Tipos.Epsilon);
-
-                }/*
-                else
-                {
-                    imprime("else", cont, true);
-                    imprime("{", cont, true);
-                    cont++;
-                    imprime("throw new Error(\" Sintaxis, Linea \" + linea + ,\": Se esperaba un SNT\", log);", cont, true);
-                    cont--;
-                    imprime("}", cont, true);
-                }*/
             }
             else if (Clasificacion == Tipos.OR)
             {
@@ -330,24 +341,20 @@ namespace Compilador
                     imprime("else ", cont, false);
 
                     conjuntoTokens(true);
-
                 }
                 else
                 {
                     throw new Error(" Semantico, Linea " + linea + ": Falta de sentencia", log);
                 }
             }
-
             if (Clasificacion != Tipos.FinProduccion)
             {
                 conjuntoTokens(false);
             }
-
         }
 
         private void imprime(string text, int cont, bool esWiriteLine)
         {
-
             for (int i = 0; i < cont; i++)
             {
                 lenguajecs.Write("\t");
@@ -361,8 +368,6 @@ namespace Compilador
             {
                 lenguajecs.Write(text);
             }
-
         }
-
     }
 }

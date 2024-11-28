@@ -32,9 +32,15 @@ namespace Lenguaje
 			if (Clasificacion == Tipos.Numero)
 			{
 				match(Tipos.Numero);
-				match("b");
-				C();
-				D();
+			}
+			else if (Contenido == "a")
+			{
+				match("a");
+				A();
+			}
+			else 			
+			{
+				B();
 			}
 			D();
 			
@@ -50,13 +56,9 @@ namespace Lenguaje
 			{
 				match("b");
 			}
-			else if (Clasificacion == Tipos.D)
+			else 			
 			{
 				D();
-			}
-			else
-			{
-				throw new Error(" Sintaxis, Linea " + linea + ,": Se esperaba un SNT", log);
 			}
 			
 		}
